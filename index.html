@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>人像摄影风格全书 · 40 大风格与拍摄技巧</title>
+<style>
+  :root{
+    --bg:#0e1013;
+    --bg-soft:#15181d;
+    --card:#1a1e24;
+    --card-2:#20252c;
+    --line:#2c333c;
+    --text:#e8eaed;
+    --text-dim:#9aa4b0;
+    --accent:#e0b15c;
+    --accent-2:#7fb3d5;
+    --rose:#d98a8a;
+    --serif:"Noto Serif SC","Songti SC",Georgia,serif;
+    --sans:"PingFang SC","Microsoft YaHei",-apple-system,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:76px}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.75}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    min-height:72vh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+    text-align:center;padding:80px 24px 64px;position:relative;overflow:hidden;
+    background:
+      radial-gradient(1200px 600px at 20% -10%, rgba(224,177,92,.14), transparent 60%),
+      radial-gradient(1000px 500px at 85% 110%, rgba(127,179,213,.12), transparent 60%),
+      var(--bg);
+    border-bottom:1px solid var(--line);
+  }
+  .hero .kicker{letter-spacing:.5em;text-transform:uppercase;color:var(--accent);font-size:13px;margin-bottom:22px}
+  .hero h1{font-family:var(--serif);font-size:clamp(34px,6vw,64px);font-weight:700;line-height:1.25}
+  .hero h1 em{font-style:normal;color:var(--accent)}
+  .hero p.sub{margin-top:20px;max-width:640px;color:var(--text-dim);font-size:16px}
+  .hero .stats{display:flex;gap:40px;margin-top:40px;flex-wrap:wrap;justify-content:center}
+  .hero .stat{text-align:center}
+  .hero .stat b{display:block;font-family:var(--serif);font-size:34px;color:var(--accent)}
+  .hero .stat span{font-size:13px;color:var(--text-dim)}
+
+  /* ---------- Nav ---------- */
+  nav.toc{position:sticky;top:0;z-index:50;background:rgba(14,16,19,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .toc-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:12px 24px}
+  .toc-brand{font-family:var(--serif);color:var(--accent);font-size:14px;letter-spacing:.15em;white-space:nowrap}
+  .toc-groups{display:flex;gap:6px;flex:1;min-width:0;flex-wrap:wrap}
+  .toc-groups a{color:var(--text-dim);text-decoration:none;font-size:13px;padding:6px 12px;border-radius:999px;border:1px solid transparent;white-space:nowrap}
+  .toc-groups a:hover{color:var(--accent);border-color:var(--line);background:var(--card)}
+  .toc-toggle{cursor:pointer;background:var(--accent);color:#14161a;border:none;font-weight:700;font-size:13px;padding:8px 18px;border-radius:999px;display:flex;align-items:center;gap:7px;flex-shrink:0}
+  .toc-toggle .arrow{transition:transform .25s;font-size:11px}
+  nav.toc.open .toc-toggle .arrow{transform:rotate(180deg)}
+  .toc-panel{max-width:1100px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:repeat(4,1fr);gap:6px 24px;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease}
+  nav.toc.open .toc-panel{max-height:640px;padding:16px 24px 20px;border-top:1px solid var(--line)}
+  .toc-col h4{font-size:12px;letter-spacing:.2em;color:var(--accent-2);margin:6px 0 4px}
+  .toc-col a{display:block;color:var(--text-dim);font-size:13px;text-decoration:none;padding:5px 8px;border-radius:8px}
+  .toc-col a:hover{color:var(--accent);background:var(--card)}
+
+  /* ---------- Layout ---------- */
+  main{max-width:1100px;margin:0 auto;padding:24px}
+  .group-title{
+    margin:56px 0 -14px;font-family:var(--serif);font-size:20px;color:var(--accent-2);
+    letter-spacing:.25em;display:flex;align-items:center;gap:16px;
+  }
+  .group-title::after{content:"";flex:1;height:1px;background:var(--line)}
+  .group-title:first-of-type{margin-top:8px}
+  .style-card{
+    display:grid;grid-template-columns:minmax(300px,5fr) 7fr;gap:36px;align-items:stretch;
+    background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;
+    margin:44px 0;box-shadow:0 18px 40px rgba(0,0,0,.35);
+  }
+  .style-card:nth-child(even) .figure{order:2}
+  .figure{position:relative;background:var(--bg-soft);overflow:hidden;height:640px}
+  .slide-track{display:flex;height:100%;transition:transform .45s cubic-bezier(.4,0,.2,1)}
+  .slide{position:relative;flex:0 0 100%;height:100%}
+  .slide img{width:100%;height:100%;object-fit:cover;display:block;cursor:zoom-in}
+  .figure .src-tag{position:absolute;bottom:10px;left:10px;font-size:11px;letter-spacing:.06em;color:#cfd6de;background:rgba(0,0,0,.55);padding:3px 10px;border-radius:999px;backdrop-filter:blur(4px);z-index:2}
+  .slide-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.45);color:#fff;font-size:20px;line-height:1;cursor:pointer;backdrop-filter:blur(4px);transition:background .2s;display:flex;align-items:center;justify-content:center}
+  .slide-arrow:hover{background:rgba(224,177,92,.75);color:#14161a}
+  .slide-arrow.prev{left:12px}
+  .slide-arrow.next{right:12px}
+  .slide-dots{position:absolute;bottom:12px;right:14px;display:flex;gap:6px;z-index:3}
+  .slide-dots button{width:8px;height:8px;border-radius:50%;border:none;background:rgba(255,255,255,.4);cursor:pointer;padding:0;transition:all .25s}
+  .slide-dots button.on{background:var(--accent);width:18px;border-radius:999px}
+
+  /* ---------- Lightbox ---------- */
+  .lightbox{position:fixed;inset:0;z-index:200;background:rgba(8,10,12,.9);backdrop-filter:blur(6px);display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .25s}
+  .lightbox.open{opacity:1;pointer-events:auto}
+  .lb-bar{display:flex;align-items:center;gap:8px;padding:12px 18px;border-bottom:1px solid var(--line)}
+  .lb-title{flex:1;color:var(--text-dim);font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .lb-btn{min-width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--text);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0 12px}
+  .lb-btn:hover{border-color:var(--accent);color:var(--accent)}
+  .lb-stage{flex:1;overflow:hidden;display:flex;align-items:center;justify-content:center;position:relative;touch-action:none}
+  .lb-stage img{max-width:92vw;max-height:calc(100vh - 130px);object-fit:contain;transform-origin:center;transition:transform .12s ease-out;user-select:none;-webkit-user-drag:none;cursor:grab;border-radius:6px}
+  .lb-stage img.dragging{cursor:grabbing;transition:none}
+  .lb-hint{text-align:center;padding:10px;font-size:12px;color:var(--text-dim)}
+  .figure .no{
+    position:absolute;top:14px;left:16px;font-family:var(--serif);font-size:15px;color:#fff;
+    background:rgba(0,0,0,.55);padding:4px 14px;border-radius:999px;backdrop-filter:blur(4px);letter-spacing:.15em;
+  }
+  .body{padding:34px 36px 34px 8px}
+  .style-card:nth-child(even) .body{padding:34px 8px 34px 36px}
+  .body .tag{display:inline-block;font-size:12px;letter-spacing:.2em;color:var(--accent);border:1px solid rgba(224,177,92,.4);padding:3px 12px;border-radius:999px;margin-bottom:14px}
+  .body h2{font-family:var(--serif);font-size:30px;margin-bottom:4px}
+  .body h2 small{display:block;font-size:13px;color:var(--text-dim);font-family:var(--sans);font-weight:400;letter-spacing:.15em;margin-top:4px}
+  .body .desc{color:var(--text-dim);margin:14px 0 20px;font-size:15px}
+
+  .tips{display:grid;gap:12px}
+  .tip{display:flex;gap:12px;background:var(--card-2);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+  .tip .ic{flex-shrink:0;width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;background:rgba(224,177,92,.15);color:var(--accent);margin-top:2px}
+  .tip b{display:block;font-size:14px;margin-bottom:2px}
+  .tip p{font-size:13.5px;color:var(--text-dim)}
+
+  .plan{margin-top:18px;border:1px solid var(--line);border-radius:12px;background:var(--bg-soft);overflow:hidden}
+  .plan>summary{cursor:pointer;list-style:none;padding:12px 16px;font-size:14px;font-weight:600;color:var(--accent);display:flex;align-items:center;gap:8px;user-select:none}
+  .plan>summary::-webkit-details-marker{display:none}
+  .plan>summary::before{content:"\25B8";transition:transform .25s;font-size:12px}
+  .plan[open]>summary::before{transform:rotate(90deg)}
+  .plan[open]>summary{border-bottom:1px solid var(--line)}
+  .plan .plan-body{padding:14px 16px;display:grid;gap:10px}
+  .plan .prow{display:grid;grid-template-columns:76px 1fr;gap:12px;font-size:13px;line-height:1.7}
+  .plan .prow>b{color:var(--accent-2);font-weight:600;white-space:nowrap;padding-top:1px}
+  .plan .prow span{color:var(--text-dim)}
+  /* plan 是 .style-card 网格的第三个子元素：必须横跨整行，否则宽屏下会被塞进左列小格 */
+  .style-card>.plan{grid-column:1/-1;order:3;margin:0 36px 30px}
+  .params{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
+  .params span{font-size:12px;color:var(--accent-2);background:rgba(127,179,213,.1);border:1px solid rgba(127,179,213,.25);padding:4px 12px;border-radius:999px}
+
+  /* ---------- Summary table ---------- */
+  section.summary{margin:70px 0}
+  section.summary h2{font-family:var(--serif);font-size:32px;text-align:center;margin-bottom:8px}
+  section.summary p.sub{text-align:center;color:var(--text-dim);margin-bottom:30px}
+  table{width:100%;border-collapse:collapse;font-size:14px;background:var(--card);border-radius:14px;overflow:hidden}
+  th,td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left}
+  th{background:var(--card-2);color:var(--accent);font-weight:600;font-size:13px;letter-spacing:.08em}
+  td:first-child{font-weight:600}
+  tr:hover td{background:rgba(224,177,92,.05)}
+
+  footer{border-top:1px solid var(--line);margin-top:70px;padding:40px 24px;text-align:center;color:var(--text-dim);font-size:13px}
+  footer .brand{font-family:var(--serif);color:var(--accent);letter-spacing:.3em;margin-bottom:8px}
+
+  @media (max-width:820px){
+    .style-card{grid-template-columns:1fr}
+    .style-card:nth-child(even) .figure{order:0}
+    .figure{height:420px}
+    .slide img{max-height:420px}
+    .body,.style-card:nth-child(even) .body{padding:26px}
+    .toc-brand{display:none}
+    .toc-groups{display:none}
+    .toc-inner{justify-content:center}
+    .toc-panel{grid-template-columns:repeat(2,1fr)}
+    nav.toc.open .toc-panel{max-height:1200px}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="kicker">PORTRAIT PHOTOGRAPHY</div>
+  <h1>人像摄影<em>风格全书</em></h1>
+  <p class="sub">从经典影棚到超广角透视、从国风古装到昭和画报——40 种人像摄影风格完全合集。每种风格配示意图、核心拍摄技巧与推荐参数，收藏这一页就够入门所有风格。</p>
+  <div class="stats">
+    <div class="stat"><b>40</b><span>大风格</span></div>
+    <div class="stat"><b>400</b><span>滑动示意图</span></div>
+    <div class="stat"><b>120+</b><span>拍摄要点</span></div>
+  </div>
+</header>
+
+<nav class="toc" id="toc">
+  <div class="toc-inner">
+    <span class="toc-brand">40 STYLES</span>
+    <div class="toc-groups">
+      <a href="#g1">基础光影</a>
+      <a href="#g2">氛围与纪实</a>
+      <a href="#g3">主题与人物</a>
+      <a href="#g4">光绘与创意</a>
+    </div>
+    <button class="toc-toggle" id="tocToggle">全部目录 <span class="arrow">▼</span></button>
+  </div>
+  <div class="toc-panel">
+    <div class="toc-col">
+      <h4>基础光影 01–06</h4>
+      <a href="#s1">① 经典影棚</a><a href="#s2">② 高调</a><a href="#s3">③ 低调</a><a href="#s4">④ 黑白质感</a><a href="#s5">⑤ 窗边自然光</a><a href="#s6">⑥ 逆光金色</a>
+    </div>
+    <div class="toc-col">
+      <h4>氛围与纪实 07–12 · 30–34 · 40</h4>
+      <a href="#s7">⑦ 日系小清新</a><a href="#s8">⑧ 人文纪实</a><a href="#s9">⑨ 时尚大片</a><a href="#s10">⑩ 剪影</a><a href="#s11">⑪ 复古胶片</a><a href="#s12">⑫ 双重曝光</a><a href="#s30">㉚ 晴天少女</a><a href="#s31">㉛ 森系清甜</a><a href="#s32">㉜ 蓝调氛围</a><a href="#s33">㉝ 田园农场</a><a href="#s34">㉞ 唯美朦胧</a><a href="#s40">㊵ 阴天情绪</a>
+    </div>
+    <div class="toc-col">
+      <h4>主题与人物 13–18 · 36 · 38</h4>
+      <a href="#s13">⑬ 国风古装</a><a href="#s14">⑭ 环境职业</a><a href="#s15">⑮ 商务形象照</a><a href="#s16">⑯ 婚纱摄影</a><a href="#s17">⑰ 美妆特写</a><a href="#s18">⑱ 儿童玩乐</a><a href="#s36">㊱ 复古油画</a><a href="#s38">㊳ 韩系奶油</a>
+    </div>
+    <div class="toc-col">
+      <h4>光绘与创意 19–29 · 35 · 37 · 39</h4>
+      <a href="#s19">⑲ 直闪快照</a><a href="#s20">⑳ 光影切割</a><a href="#s21">㉑ 霓虹赛博</a><a href="#s22">㉒ 雾雨氛围</a><a href="#s23">㉓ 镜面反射</a><a href="#s24">㉔ 俯拍天空之镜</a><a href="#s25">㉕ 变焦拉丝</a><a href="#s26">㉖ 移轴微缩</a><a href="#s27">㉗ 红外梦幻</a><a href="#s28">㉘ 超广角透视</a><a href="#s29">㉙ 错位透视</a><a href="#s35">㉟ 神明少女</a><a href="#s37">㊲ 日系胶片</a><a href="#s39">㊴ 昭和画报</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="group-title" id="g1">基础光影 · 01–06</div>
+
+<!-- 1 -->
+<article class="style-card" id="s1">
+  <div class="figure" data-fig="01"><span class="no">01</span><div class="slide-track"><div class="slide"><img src="images/01-classic.png" alt="经典影棚肖像" data-title="风格 01 · 参考图"></div><div class="slide"><img src="images/v2/01-classic.png" alt="经典影棚肖像（Qwen-Image 2.1）" data-title="风格 01 · 经典影棚肖像（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/01-classic-b.png" alt="经典影棚肖像（Qwen-Image 2.1）" data-title="风格 01 · 经典影棚肖像（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/01-classic-c.png" alt="经典影棚肖像（Qwen-Image 2.1）" data-title="风格 01 · 经典影棚肖像（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/01-classic-d.png" alt="经典影棚肖像（Qwen-Image 2.1）" data-title="风格 01 · 经典影棚肖像（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/01-classic-w1.png" alt="经典影棚肖像（年轻女生版）" data-title="风格 01 · 经典影棚肖像（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/01-classic-w2.png" alt="经典影棚肖像（年轻女生版）" data-title="风格 01 · 经典影棚肖像（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/01-classic-w3.png" alt="经典影棚肖像（年轻女生版）" data-title="风格 01 · 经典影棚肖像（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/01-classic-w4.png" alt="经典影棚肖像（年轻女生版）" data-title="风格 01 · 经典影棚肖像（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/01-classic-w5.png" alt="经典影棚肖像（年轻女生版）" data-title="风格 01 · 经典影棚肖像（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">STUDIO CLASSIC</span>
+    <h2>经典影棚肖像<small>伦勃朗光 · 专业头像 ·  timeless 质感</small></h2>
+    <p class="desc">最正统的棚拍人像：单灯或双灯布光、纯色背景、突出人物本身。核心是「伦勃朗光」——主灯位于人物斜上方 45°，在暗侧脸颊留下一个倒三角形光斑，立体感与情绪兼备。</p>
+    <div class="tips">
+      <div class="tip"><div class="ic">光</div><div><b>主灯 45° 高位 + 柔光箱</b><p>柔光箱越大人造光越柔；主灯高于眼睛往下打，颧骨下形成三角光即伦勃朗光位。可加一块反光板或弱光填充暗部，控制光比 1:2 ~ 1:4。</p></div></div>
+      <div class="tip"><div class="ic">背</div><div><b>纯色无缝背景纸</b><p>人物离背景 1.5m 以上，避免投影落在背景上；灰背景最百搭，白加亮、压暗即可切换调性。</p></div></div>
+      <div class="tip"><div class="ic">姿</div><div><b>先转肩、再转脸</b><p>身体侧 30–45°、脸转回镜头，显瘦且立体；下巴微向前向下，收紧下颌线。</p></div></div>
+    </div>
+    <div class="params"><span>85mm f/2</span><span>ISO 100</span><span>1/125s（同步快门）</span><span>对焦：近侧眼</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>全画幅机身（5D4/A7M4）+ 85mm f/1.4–2（或 80–105mm 定焦、70–200 f/2.8）；一盏 100–150cm 八角柔光箱作主灯，一条条形灯束光筒做发丝光，黑白反光板各一，灰卡校色。</span></div><div class="prow"><b>场景</b><span>层高 ≥2.5m 的影棚，2.72m 宽深灰/炭灰无缝纸；机位距人物 3–4m，人物离背景 1.5–2m，让阴影退到画面外。</span></div><div class="prow"><b>灯光</b><span>主灯八角箱放人物前侧上方 45°、灯心略高于头顶对准鼻尖，让阴影侧脸颊出现鼻下三角形亮区（底朝下、不越过眼线）；对面 1/8 功率条形灯或白色反光板填充，光比约 4:1；发丝光后上方 45° 条灯打头顶发缘；可选背景灯出灰渐变。先用造型光确认三角光位置再试拍。</span></div><div class="prow"><b>人物与引导</b><span>女：米白/大地色上衣+西装外套；男：深色西装。妆全哑光防油光。引导：先正面站定→肩部向后转约 30°→脸转回对光方向、视线越过镜头；下巴前伸微收收紧下颌线；确认眼神光落在瞳孔 10–11 点方向。</span></div><div class="prow"><b>相机参数</b><span>ISO 100｜f/4–5.6（眼睛锐利、皮肤微微柔化）｜快门 1/160 同步速度｜点测光面部，闪光灯输出再收 1/3｜白平衡 5600K 闪光。</span></div><div class="prow"><b>后期处理</b><span>Capture One/LR 校肤色；加深加深眼部与眼神光；中性灰磨皮保留质感；曲线压背景成中心亮边缘暗的晕影；锐化只加眼睛。</span></div></div></details>
+  </article>
+
+<!-- 2 -->
+<article class="style-card" id="s2">
+  <div class="figure" data-fig="02"><span class="no">02</span><div class="slide-track"><div class="slide"><img src="images/02-highkey.png" alt="高调人像" data-title="风格 02 · 参考图"></div><div class="slide"><img src="images/v2/02-highkey.png" alt="高调人像（Qwen-Image 2.1）" data-title="风格 02 · 高调人像（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/02-highkey-b.png" alt="高调人像（Qwen-Image 2.1）" data-title="风格 02 · 高调人像（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/02-highkey-c.png" alt="高调人像（Qwen-Image 2.1）" data-title="风格 02 · 高调人像（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/02-highkey-d.png" alt="高调人像（Qwen-Image 2.1）" data-title="风格 02 · 高调人像（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/02-highkey-w1.png" alt="高调人像（年轻女生版）" data-title="风格 02 · 高调人像（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/02-highkey-w2.png" alt="高调人像（年轻女生版）" data-title="风格 02 · 高调人像（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/02-highkey-w3.png" alt="高调人像（年轻女生版）" data-title="风格 02 · 高调人像（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/02-highkey-w4.png" alt="高调人像（年轻女生版）" data-title="风格 02 · 高调人像（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/02-highkey-w5.png" alt="高调人像（年轻女生版）" data-title="风格 02 · 高调人像（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">HIGH-KEY</span>
+    <h2>高调明亮风格<small>纯净 · 通透 · 商业美妆感</small></h2>
+    <p class="desc">画面整体偏亮、阴影极少、背景纯白，传递干净、青春、愉悦的情绪。常用于母婴、美妆、婚纱和日系写真。关键是让背景比主体更亮（过曝 1–2 档）而肤色曝光准确。</p>
+    <div class="tips">
+      <div class="tip"><div class="ic">光</div><div><b>背景独立打灯</b><p>至少两盏灯专门打亮白背景（比主体亮 1–2 档），主体再用大柔光箱正面偏上补光，光比极小、几乎无影。</p></div></div>
+      <div class="tip"><div class="ic">测</div><div><b>按脸测光、宁过勿欠</b><p>点测面部中间调，直方图靠右但不碰墙；白背景略过曝是正常的，欠曝会发灰脏。</p></div></div>
+      <div class="tip"><div class="ic">搭</div><div><b>服装浅色系呼应</b><p>白、米、浅粉等浅色服装与高调氛围统一；深色服装会破坏整体明亮感（除非刻意对比）。</p></div></div>
+    </div>
+    <div class="params"><span>+1 ~ +2 EV</span><span>白背景过曝</span><span>光比 ≤ 1:2</span><span>白平衡偏冷更通透</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>全画幅 + 24–70 f/2.8 或 85mm；两支 120cm 八角箱专打背景；一支带柔光布的大面积主灯；白色大反光板；白色无缝背景纸。</span></div><div class="prow"><b>场景</b><span>全白影棚：白背景纸从天到地包住并拉平褶皱，或直接白墙白地；移走画面内一切深色物体。</span></div><div class="prow"><b>灯光</b><span>两支灯分别左右打背景，测光比面部亮 1.5–2 档——背景先过曝才能纯白；主灯正面偏上透过柔光布均匀铺人物；白色反光板在下方向上补下巴阴影；检查人物影子不打在背景上（灯位抬高、人物离背景）。</span></div><div class="prow"><b>人物与引导</b><span>全身白色着装（白衬衫/白裙/米色针织），妆容清透水光、唇色是唯一色彩点；头发细致去碎发（白色背景碎发全暴露，发胶+吸尘器处理）；表情轻松微笑。</span></div><div class="prow"><b>相机参数</b><span>ISO 100｜f/2.8–4｜对面部测光，直方图右侧贴边但不碰壁｜曝光 +0.7–1EV｜背景读数 250–255。</span></div><div class="prow"><b>后期处理</b><span>白平衡必须准确偏灰即翻；高光拉回恢复细节；背景色阶推向纯白；HSL 橙色明度+10 提亮肤色；边缘锐化保留不糊。</span></div></div></details>
+  </article>
+
+<!-- 3 -->
+<article class="style-card" id="s3">
+  <div class="figure" data-fig="03"><span class="no">03</span><div class="slide-track"><div class="slide"><img src="images/03-lowkey.png" alt="低调人像" data-title="风格 03 · 参考图"></div><div class="slide"><img src="images/v2/03-lowkey.png" alt="低调人像（Qwen-Image 2.1）" data-title="风格 03 · 低调人像（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/03-lowkey-b.png" alt="低调人像（Qwen-Image 2.1）" data-title="风格 03 · 低调人像（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/03-lowkey-c.png" alt="低调人像（Qwen-Image 2.1）" data-title="风格 03 · 低调人像（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/03-lowkey-d.png" alt="低调人像（Qwen-Image 2.1）" data-title="风格 03 · 低调人像（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/03-lowkey-w1.png" alt="低调人像（年轻女生版）" data-title="风格 03 · 低调人像（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/03-lowkey-w2.png" alt="低调人像（年轻女生版）" data-title="风格 03 · 低调人像（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/03-lowkey-w3.png" alt="低调人像（年轻女生版）" data-title="风格 03 · 低调人像（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/03-lowkey-w4.png" alt="低调人像（年轻女生版）" data-title="风格 03 · 低调人像（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/03-lowkey-w5.png" alt="低调人像（年轻女生版）" data-title="风格 03 · 低调人像（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">LOW-KEY</span>
+    <h2>低调暗调风格<small>神秘 · 力量感 · 明暗对照</small></h2>
+    <p class="desc">大面积黑、小面积光的「明暗对照法（Chiaroscuro）」。常用侧逆光勾勒轮廓，让脸的大部分沉入黑暗，只留一只眼睛或一道腮线发光。适合男性肖像、运动、音乐主题。</p>
+    <div class="tips">
+      <div class="tip"><div class="ic">光</div><div><b>控光比切光更甚于加光</b><p>用束光筒、四门格、旗板把光「裁」成需要的一条/一片；灯离人物远则光更硬更窄。背景保持全黑（人物远离背景）。</p></div></div>
+      <div class="tip"><div class="ic">测</div><div><b>只对亮部测光</b><p>点测受光的脸侧，让暗部自然掉到黑场；后期压黑时保留暗部一档细节，避免死黑一团。</p></div></div>
+      <div class="tip"><div class="ic">边</div><div><b>发丝轮廓光是灵魂</b><p>一盏硬光从侧后方 135° 打头发与肩部边缘，把主体从黑背景里「剥离」出来。</p></div></div>
+    </div>
+    <div class="params"><span>点测亮部</span><span>光比 1:8+</span><span>黑色吸光布背景</span><span>后期压黑留细节</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>机身 + 85/135mm f/1.8–2.8；单灯束光筒/聚光筒（barn door）或加蜂巢的条形箱；黑色旗板两块；黑色哑光背景。</span></div><div class="prow"><b>场景</b><span>全暗影棚：黑背景在人物身后 ≥2m；遮光处理——拉窗帘、黑色吸光布盖住反光物，先关灯测环境光为 0。</span></div><div class="prow"><b>灯光</b><span>只留一盏加蜂巢条灯/束光筒，从人物侧后方 135–160° 掠过，只照亮一侧脸颊边缘、下颌线与肩部轮廓，正面完全沉入黑；两侧黑旗夹住防止余光溢出照亮背景；光比 >1:8。对受光面最亮处点测。</span></div><div class="prow"><b>人物与引导</b><span>深色服装融入背景（黑高领/深色西装），只露出轮廓镶边；表情克制、眼神投向画面暗处；身体背光的侧对镜头，让脸只有一条光带。发型收整齐——边缘光下碎发全部可见。</span></div><div class="prow"><b>相机参数</b><span>ISO 100–200｜f/2.8–4｜点测受光亮面、-0 至 -1/3EV｜白平衡微冷 5000K 让黑区偏冷蓝。</span></div><div class="prow"><b>后期处理</b><span>黑场压实（Level 黑点上调至背景纯黑）；只保留高光边缘层次；肤色暖/环境冷的分离色调；暗部降噪 -10；检查高光无溢出。</span></div></div></details>
+  </article>
+
+<!-- 4 -->
+<article class="style-card" id="s4">
+  <div class="figure" data-fig="04"><span class="no">04</span><div class="slide-track"><div class="slide"><img src="images/04-bw.png" alt="黑白质感人像" data-title="风格 04 · 参考图"></div><div class="slide"><img src="images/v2/04-bw.png" alt="黑白质感人像（Qwen-Image 2.1）" data-title="风格 04 · 黑白质感人像（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/04-bw-b.png" alt="黑白质感人像（Qwen-Image 2.1）" data-title="风格 04 · 黑白质感人像（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/04-bw-c.png" alt="黑白质感人像（Qwen-Image 2.1）" data-title="风格 04 · 黑白质感人像（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/04-bw-d.png" alt="黑白质感人像（Qwen-Image 2.1）" data-title="风格 04 · 黑白质感人像（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/04-bw-w1.png" alt="黑白质感人像（年轻女生版）" data-title="风格 04 · 黑白质感人像（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/04-bw-w2.png" alt="黑白质感人像（年轻女生版）" data-title="风格 04 · 黑白质感人像（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/04-bw-w3.png" alt="黑白质感人像（年轻女生版）" data-title="风格 04 · 黑白质感人像（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/04-bw-w4.png" alt="黑白质感人像（年轻女生版）" data-title="风格 04 · 黑白质感人像（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/04-bw-w5.png" alt="黑白质感人像（年轻女生版）" data-title="风格 04 · 黑白质感人像（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">BLACK &amp; WHITE</span>
+    <h2>黑白高反差风格<small>纹理 · 情绪 · 岁月感</small></h2>
+    <p class="desc">抽掉色彩后，光影、线条与皮肤纹理成为主角。特别适合饱经风霜的面孔（老人、劳动者）和强调肌肉线条的形体。侧光 / 硬光最能「雕刻」皱纹与质感。</p>
+    <div class="tips">
+      <div class="tip"><div class="ic">选</div><div><b>先判断「这张脸值不值得黑白」</b><p>黑白适合有故事的面孔、强烈光影或极简构图；皮肤瑕疵多、依赖色彩氛围的题材反而不适合。</p></div></div>
+      <div class="tip"><div class="ic">光</div><div><b>侧向硬光强化纹理</b><p>光越侧、越硬，皱纹与毛孔越突出；想柔和一点就加柔光箱但仍保持侧位。</p></div></div>
+      <div class="tip"><div class="ic">后</div><div><b>用黑白转换而非直接去色</b><p>调整红/橙通道提亮肤色，加曲线做深黑高白；局部加深减淡（Dodge &amp; Burn）重塑光的走向。</p></div></div>
+    </div>
+    <div class="params"><span>拍摄时 RAW+黑白预览</span><span>直方图两端留空间</span><span>对比曲线 S 形</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>高像素机身（A7R/Z7）+ 50/85mm 定焦；标准罩裸灯（硬光核心）或保丽龙反光板挖孔灯；银色反光板；偏振镜控反光。</span></div><div class="prow"><b>场景</b><span>灰色无缝纸，或带粗糙纹理的现场（砖墙/旧木门/混凝土）。模特优选有故事的面孔——皱纹、伤疤、骨相分明都成为素材。</span></div><div class="prow"><b>灯光</b><span>裸灯/标准罩硬侧光在正侧 90°、略高于头 45°：皮肤纹理、胡茬、皱纹被浮雕式拉出，阴影边界清晰硬朗；对面银色反光板补 1/4 光或干脆不补保高反差；这是唯一光源。</span></div><div class="prow"><b>人物与引导</b><span>着装极简深色无图案（防干扰）；表情沉稳、眼神直视镜头有对抗感；妆容必须哑光；让模特做微表情（抿嘴/皱眉）找到最有力的一帧连拍。</span></div><div class="prow"><b>相机参数</b><span>ISO 100｜f/5.6–8 保细节｜对高光侧脸部点测 0｜RAW + 机内单色预览辅助判断。</span></div><div class="prow"><b>后期处理</b><span>黑白转换：通道混合器红色 +20 提亮肤色、蓝色 -30 加深阴影与背景；S 形曲线拉反差；清晰度/结构 +20；颗粒 +15 模仿银盐；输出时检查白点不过。</span></div></div></details>
+  </article>
+
+<!-- 5 -->
+<article class="style-card" id="s5">
+  <div class="figure" data-fig="05"><span class="no">05</span><div class="slide-track"><div class="slide"><img src="images/05-window.png" alt="窗边自然光人像" data-title="风格 05 · 参考图"></div><div class="slide"><img src="images/v2/05-window.png" alt="窗边自然光人像（Qwen-Image 2.1）" data-title="风格 05 · 窗边自然光人像（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/05-window-b.png" alt="窗边自然光人像（Qwen-Image 2.1）" data-title="风格 05 · 窗边自然光人像（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/05-window-c.png" alt="窗边自然光人像（Qwen-Image 2.1）" data-title="风格 05 · 窗边自然光人像（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/05-window-d.png" alt="窗边自然光人像（Qwen-Image 2.1）" data-title="风格 05 · 窗边自然光人像（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/05-window-w1.png" alt="窗边自然光人像（年轻女生版）" data-title="风格 05 · 窗边自然光人像（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/05-window-w2.png" alt="窗边自然光人像（年轻女生版）" data-title="风格 05 · 窗边自然光人像（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/05-window-w3.png" alt="窗边自然光人像（年轻女生版）" data-title="风格 05 · 窗边自然光人像（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/05-window-w4.png" alt="窗边自然光人像（年轻女生版）" data-title="风格 05 · 窗边自然光人像（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/05-window-w5.png" alt="窗边自然光人像（年轻女生版）" data-title="风格 05 · 窗边自然光人像（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">NATURAL / WINDOW LIGHT</span>
+    <h2>窗边自然光风格<small>居家 · 咖啡馆 · 柔和过渡</small></h2>
+    <p class="desc">不买灯也能出大片：一扇大窗就是巨型柔光箱。侧对窗户时光比自然、立体感强，背景随距离迅速暗下去，形成天然的暗调渐变，情绪安静内敛。</p>
+    <div class="tips">
+      <div class="tip"><div class="ic">位</div><div><b>脸朝向窗、离窗 1–2m</b><p>大阴天或纱帘后的散射光最柔；想让暗部有细节就靠近窗，想要强烈明暗就远离窗（平方反比定律）。</p></div></div>
+      <div class="tip"><div class="ic">补</div><div><b>白色墙面/反光板就是免费辅灯</b><p>暗侧朝向白色家具即可自然补光；需要更可控就用银色反光板距人物 1m 斜反射。</p></div></div>
+      <div class="tip"><div class="ic">镜</div><div><b>开大光圈，ISO 放宽</b><p>f/1.4–2.8，ISO 400–1600 无所谓——干净暗部比噪点重要，快门不低于安全速度即可大胆手持。</p></div></div>
+    </div>
+    <div class="params"><span>50/85mm f/1.4–2</span><span>侧窗 90° 光位</span><span>WB 手动 5000K 统一氛围</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>机身 + 50/85mm f/1.4–1.8 大光圈定焦；不闪光；白色反光板一块；可用纱帘调光。</span></div><div class="prow"><b>场景</b><span>北向大窗的房间（全年光柔且稳定），选上午 9–11 点 / 下午 3–5 点无直射阳光时段；关掉室内灯防色温混杂；背景为窗景或简洁墙面。</span></div><div class="prow"><b>灯光</b><span>窗户是唯一光源——窗即巨型柔光箱：脸颊离窗近则光柔亮、远则收暗，靠距离控制光比而不是灯具；用 45° 侧前或正侧光造型立体；阴影侧用白板补光（近=亮远=暗）或放弃填充保留情绪；纱帘做半透可再软化一档。</span></div><div class="prow"><b>人物与引导</b><span>家居服/针织/衬衫，妆容素颜感；坐姿侧对窗、或背对窗回眸；手捧咖啡杯/书让姿态松弛；视线看窗外或越过镜头，不直视。</span></div><div class="prow"><b>相机参数</b><span>ISO 400–800｜f/1.4–2.8 虚化背景｜对面部点测 +2/3EV（皮肤通透）｜白平衡偏冷一点保窗光干净。</span></div><div class="prow"><b>后期处理</b><span>阴影适度提亮但保留窗外→窗内的衰减过渡；肤色暖 vs 环境冷的微对撞；轻微柔化高光；白平衡统一不偏黄。</span></div></div></details>
+  </article>
+
+<!-- 6 -->
+<article class="style-card" id="s6">
+  <div class="figure" data-fig="06"><span class="no">06</span><div class="slide-track"><div class="slide"><img src="images/06-backlight.png" alt="逆光金色时刻" data-title="风格 06 · 参考图"></div><div class="slide"><img src="images/v2/06-backlight.png" alt="逆光金色时刻（Qwen-Image 2.1）" data-title="风格 06 · 逆光金色时刻（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/06-backlight-b.png" alt="逆光金色时刻（Qwen-Image 2.1）" data-title="风格 06 · 逆光金色时刻（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/06-backlight-c.png" alt="逆光金色时刻（Qwen-Image 2.1）" data-title="风格 06 · 逆光金色时刻（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/06-backlight-d.png" alt="逆光金色时刻（Qwen-Image 2.1）" data-title="风格 06 · 逆光金色时刻（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/06-backlight-w1.png" alt="逆光金色时刻（年轻女生版）" data-title="风格 06 · 逆光金色时刻（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/06-backlight-w2.png" alt="逆光金色时刻（年轻女生版）" data-title="风格 06 · 逆光金色时刻（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/06-backlight-w3.png" alt="逆光金色时刻（年轻女生版）" data-title="风格 06 · 逆光金色时刻（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/06-backlight-w4.png" alt="逆光金色时刻（年轻女生版）" data-title="风格 06 · 逆光金色时刻（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/06-backlight-w5.png" alt="逆光金色时刻（年轻女生版）" data-title="风格 06 · 逆光金色时刻（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">BACKLIT · GOLDEN HOUR</span>
+    <h2>逆光 / 金色时刻风格<small>发丝光 · 光斑 · 浪漫氛围</small></h2>
+    <p class="desc">日出后或日落前一小时，低角度的太阳成为天然轮廓灯：发丝镀金、空气透光、光斑唯美。逆光是「浪漫感」的最强来源，也是氛围写真首选。</p>
+    <div class="tips">
+      <div class="tip"><div class="ic">时</div><div><b>只拍黄金一小时</b><p>太阳越低越金黄越柔；正午顶光只会睁不开眼+阴阳脸。提前 40 分钟到场踩点机位与太阳方位。</p></div></div>
+      <div class="tip"><div class="ic">测</div><div><b>对脸测光、让太阳过曝</b><p>逆光下点测面部（或让模特先面向太阳再转回），欠曝画面氛围就没了；可用反光板/机顶闪 +1EV 补脸。</p></div></div>
+      <div class="tip"><div class="ic">炫</div><div><b>巧用眩光与树影遮挡</b><p>让太阳藏在树缝、发丝后呈星芒；摘掉遮光罩（注意灼伤传感器风险）或用长焦贴近主体制造光晕。</p></div></div>
+    </div>
+    <div class="params"><span>135mm f/2 压缩太阳</span><span>WB 6500K+ 强化暖调</span><span>+0.5~1 EV</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>机身 + 85/135mm f/1.8–2.8；金/银反光板（必备）；或机顶闪光灯补光档；遮光罩必装。</span></div><div class="prow"><b>场景</b><span>开阔草地/田野/湖边，镜头正对落日，选太阳刚贴地平线的 20–40 分钟；机位压低让太阳恰好落在人物头侧。</span></div><div class="prow"><b>灯光</b><span>太阳在人物正后逆光：发丝透光成金圈、身体镶边；金色反光板在人物前下方 45° 把暖光反弹进脸部（或闪光 -1EV 补光）；对脸部测光，让太阳与天空自然过曝；太阳藏到人头后侧 15° 减少眩光雾，斜插遮光罩压杂光。</span></div><div class="prow"><b>人物与引导</b><span>白色/鹅黄飘逸长裙（透光），长发出丝光效果最佳；引导慢速转身/走路回眸让发丝飞扬；道具蒲公英/仙女棒/透明伞出前景光斑。</span></div><div class="prow"><b>相机参数</b><span>ISO 100｜f/2–2.8（太阳出圆光斑）｜1/400s｜对脸 +2/3–1EV｜白平衡 6000K+ 保暖。</span></div><div class="prow"><b>后期处理</b><span>高光加金橙、天空向青；镜头光晕处加暖不修掉；肤色橙黄方向；暗部加青保胶片味；整体向琥珀色调。</span></div></div></details>
+  </article>
+
+  <div class="group-title" id="g2">氛围与纪实 · 07–12, 30–34, 40</div>
+<!-- 7 -->
+<article class="style-card" id="s7">
+  <div class="figure" data-fig="07"><span class="no">07</span><div class="slide-track"><div class="slide"><img src="images/07-japanese.png" alt="日系小清新" data-title="风格 07 · 参考图"></div><div class="slide"><img src="images/v2/07-japanese.png" alt="日系小清新（Qwen-Image 2.1）" data-title="风格 07 · 日系小清新（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/07-japanese-b.png" alt="日系小清新（Qwen-Image 2.1）" data-title="风格 07 · 日系小清新（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/07-japanese-c.png" alt="日系小清新（Qwen-Image 2.1）" data-title="风格 07 · 日系小清新（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/07-japanese-d.png" alt="日系小清新（Qwen-Image 2.1）" data-title="风格 07 · 日系小清新（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/07-japanese-w1.png" alt="日系小清新（年轻女生版）" data-title="风格 07 · 日系小清新（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/07-japanese-w2.png" alt="日系小清新（年轻女生版）" data-title="风格 07 · 日系小清新（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/07-japanese-w3.png" alt="日系小清新（年轻女生版）" data-title="风格 07 · 日系小清新（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/07-japanese-w4.png" alt="日系小清新（年轻女生版）" data-title="风格 07 · 日系小清新（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/07-japanese-w5.png" alt="日系小清新（年轻女生版）" data-title="风格 07 · 日系小清新（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">JAPANESE AIRY FILM</span>
+    <h2>日系空气感小清新<small>过曝 · 低反差 · 胶片色</small></h2>
+    <p class="desc">「空气感」= 明亮 + 轻透 + 低饱和。高光轻微溢出、阴影提亮发灰、色彩清淡干净、留白多、抓拍自然笑容。像夏天的一杯苏打水。</p>
+    <div class="tips">
+      <div class="tip"><div class="ic">曝</div><div><b>过曝 +1 档是风格不是失误</b><p>让高光「雾化」溢出：直方图贴右墙但不切；配合浅色服装与晴天顺光/散射光环境。</p></div></div>
+      <div class="tip"><div class="ic">色</div><div><b>低饱和 + 偏青绿的胶片色</b><p>后期降对比、提阴影、绿/青向里加一点白；模拟 Portra / 富士 C200 的淡雅色调，避免浓郁撞色。</p></div></div>
+      <div class="tip"><div class="ic">拍</div><div><b>生活流抓拍 &gt; 摆拍</b><p>35mm 视角、日常道具（伞、冰饮、自行车），引导模特「做事」而非看镜头，构图多留白、允许不居中。</p></div></div>
+    </div>
+    <div class="params"><span>35mm f/2</span><span>+0.7~1.3 EV</span><span>提阴影 -对比</span><span>颗粒感轻度叠加</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>机身 + 35/50mm f/1.8–2.8（或胶片+Portra/400H）；一块白色反光板当填充；浅色衣服本身就是反光板。</span></div><div class="prow"><b>场景</b><span>日系街区/便利店门口/斑马线/天台/河堤，白天阴天或开阔阴影下最佳；环境选浅色调（白墙、淡蓝天空、浅色招牌）。</span></div><div class="prow"><b>灯光</b><span>全散射顺光：阴天整个天空是柔光箱，光比极小几乎无影子；白色反光板正面低位轻补；坚决避免正午直射硬影——那是「清晰」不是「空气感」。</span></div><div class="prow"><b>人物与引导</b><span>白/浅蓝/鹅黄低饱和简单服装，发色自然微卷；妆容伪素颜+淡粉腮红；抓拍为主：走路回头、买饮料仰头、被风吹发，表情轻不设防；多用连拍挑最松弛的一帧。</span></div><div class="prow"><b>相机参数</b><span>ISO 200–400｜f/2–2.8｜曝光 +0.7–1EV 主动过曝｜白平衡偏冷青。</span></div><div class="prow"><b>后期处理</b><span>黑点抬高发灰（fade 曲线）；饱和度 -15、明度 +10；橙色明度拉高皮肤白净；绿色向青偏；颗粒轻微 +5；高光允许溢出成「空气」。</span></div></div></details>
+  </article>
+
+<!-- 8 -->
+<article class="style-card" id="s8">
+  <div class="figure" data-fig="08"><span class="no">08</span><div class="slide-track"><div class="slide"><img src="images/08-documentary.png" alt="人文纪实人像" data-title="风格 08 · 参考图"></div><div class="slide"><img src="images/v2/08-documentary.png" alt="人文纪实人像（Qwen-Image 2.1）" data-title="风格 08 · 人文纪实人像（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/08-documentary-b.png" alt="人文纪实人像（Qwen-Image 2.1）" data-title="风格 08 · 人文纪实人像（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/08-documentary-c.png" alt="人文纪实人像（Qwen-Image 2.1）" data-title="风格 08 · 人文纪实人像（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/08-documentary-d.png" alt="人文纪实人像（Qwen-Image 2.1）" data-title="风格 08 · 人文纪实人像（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/08-documentary-w1.png" alt="人文纪实人像（年轻女生版）" data-title="风格 08 · 人文纪实人像（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/08-documentary-w2.png" alt="人文纪实人像（年轻女生版）" data-title="风格 08 · 人文纪实人像（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/08-documentary-w3.png" alt="人文纪实人像（年轻女生版）" data-title="风格 08 · 人文纪实人像（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/08-documentary-w4.png" alt="人文纪实人像（年轻女生版）" data-title="风格 08 · 人文纪实人像（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/08-documentary-w5.png" alt="人文纪实人像（年轻女生版）" data-title="风格 08 · 人文纪实人像（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">DOCUMENTARY</span>
+    <h2>人文纪实人像<small>环境叙事 · 真实瞬间 · 街头</small></h2>
+    <p class="desc">把人放在他的生活场景里：摊贩、匠人、菜市场、夜街。用现场光，记录真实动作与表情，环境元素交代「他是谁、他在哪」。打动人的是故事而非颜值。</p>
+    <div class="tips">
+      <div class="tip"><div class="ic">关</div><div><b>先聊天、后按快门</b><p>与被摄者交谈 2–3 分钟再拍，放松后表情才真实；拍完把照片给对方看，往往能换来更配合的第二轮。</p></div></div>
+      <div class="tip"><div class="ic">等</div><div><b>守株待兔式构图</b><p>先找好背景与光线、预对焦/超焦距（f/8，2m），等「对的瞬间」走进画面再拍，成功率远高于边走边追。</p></div></div>
+      <div class="tip"><div class="ic">境</div><div><b>前景与招牌都是信息</b><p>霓虹、门窗、工具入画交代环境；85/50mm 抽离主体或 28/35mm 纳入环境，二者叙事分工不同。</p></div></div>
+    </div>
+    <div class="params"><span>35mm f/2.8 或 85mm f/2</span><span>高速快门 1/250s+</span><span>Auto-ISO + 曝光补偿</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>轻便机身 + 35/50mm f/1.8–2.8 定焦；静默快门；腕带速抓；小型闪光灯（可选低功率）。</span></div><div class="prow"><b>场景</b><span>菜市场/老街巷/夜市/理发店/咖啡馆——有生活浓度的真实场景；让被拍者在其惯常环境里。</span></div><div class="prow"><b>灯光</b><span>现场光为尊：摊灯/霓虹/窗光直接当光源打脸（找发光的摊位移位站位）；机顶闪只补 1/16 低功率或不用；快门 ≥1/125 保抓拍不糊；环境太暗就提 ISO 而不是补人造光。</span></div><div class="prow"><b>人物与引导</b><span>先聊 5–10 分钟（问生意/手艺/家常）再举机——被接受后才拍；抓动作中段（称重/点火/大笑）连拍；拍 45° 侧面和背影比正面直视更真实；让主体继续手头工作忘了你。</span></div><div class="prow"><b>相机参数</b><span>ISO Auto 上限 3200｜f/2–2.8｜中央重点测光｜快门优先 1/125。</span></div><div class="prow"><b>后期处理</b><span>色彩克制真实（夜市可微品红青对撞但别过）；对比略增；二次构图裁出主角与环境的呼应；保留杂物细节=叙事的一部分。</span></div></div></details>
+  </article>
+
+<!-- 9 -->
+<article class="style-card" id="s9">
+  <div class="figure" data-fig="09"><span class="no">09</span><div class="slide-track"><div class="slide"><img src="images/09-fashion.png" alt="时尚杂志大片" data-title="风格 09 · 参考图"></div><div class="slide"><img src="images/v2/09-fashion.png" alt="时尚杂志大片（Qwen-Image 2.1）" data-title="风格 09 · 时尚杂志大片（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/09-fashion-b.png" alt="时尚杂志大片（Qwen-Image 2.1）" data-title="风格 09 · 时尚杂志大片（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/09-fashion-c.png" alt="时尚杂志大片（Qwen-Image 2.1）" data-title="风格 09 · 时尚杂志大片（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/09-fashion-d.png" alt="时尚杂志大片（Qwen-Image 2.1）" data-title="风格 09 · 时尚杂志大片（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/09-fashion-w1.png" alt="时尚杂志大片（年轻女生版）" data-title="风格 09 · 时尚杂志大片（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/09-fashion-w2.png" alt="时尚杂志大片（年轻女生版）" data-title="风格 09 · 时尚杂志大片（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/09-fashion-w3.png" alt="时尚杂志大片（年轻女生版）" data-title="风格 09 · 时尚杂志大片（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/09-fashion-w4.png" alt="时尚杂志大片（年轻女生版）" data-title="风格 09 · 时尚杂志大片（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/09-fashion-w5.png" alt="时尚杂志大片（年轻女生版）" data-title="风格 09 · 时尚杂志大片（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">FASHION EDITORIAL</span>
+    <h2>时尚杂志大片风格<small>彩色凝胶灯 · 态度 · 视觉张力</small></h2>
+    <p class="desc">Vogue 式的编辑大片：灯光戏剧化（彩色 gel、硬光、大反差）、姿态有态度、构图大胆。核心不是把脸拍美，而是制造「视觉主张」。</p>
+    <div class="tips">
+      <div class="tip"><div class="ic">灯</div><div><b>双色 gel 对撞</b><p>一盏主灯 + 一盏品红/青色 gel 轮廓灯，或把 gel 打在背景纸上分离人物；硬光（标准罩、裸灯）让服装材质与轮廓更利落。</p></div></div>
+      <div class="tip"><div class="ic">姿</div><div><b>「未完成动作」最出片</b><p>转身、甩衣、大步走——在动作中途连拍（8–10 张/秒），比定点摆 pose 更有张力；教模特「下巴找肩」。</p></div></div>
+      <div class="tip"><div class="ic">构</div><div><b>大胆裁切与非常规视角</b><p>贴脸超近、贴地仰拍、把人物压到画面一角留大面积色块，杂志感来自「不规矩」。</p></div></div>
+    </div>
+    <div class="params"><span>35–70mm 变焦更灵活</span><span>f/5.6–8 保细节</span><span>高速同步闪 HSS</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>机身 + 24–70 与 70–200；2–3 支棚灯 + 色片（品红/青/橙）+ 150cm 八角箱 + 标准罩硬光；鼓风机或助理甩裙。</span></div><div class="prow"><b>场景</b><span>白/灰/纯色背景纸或撞色背景布；也可工业废墟/天台，背景干净大色块。</span></div><div class="prow"><b>灯光</b><span>主灯八角箱 45° 侧位；发丝/轮廓灯加品红或青色片+蜂巢只打身体一侧边缘；背景灯打互补大色块（品红背景配青轮廓）；硬光标准罩+柔光箱对撞出边缘锐利的杂志感；色片直接装主灯则整脸染色。</span></div><div class="prow"><b>人物与引导</b><span>夸张廓形/高饱和撞色时装，妆容浓（红唇或烟熏）；不定点摆拍——拍走路/转身/甩裙动作中途的帧；表情冷峻或挑衅；助理举鼓风机让衣摆持续飘。</span></div><div class="prow"><b>相机参数</b><span>ISO 100｜f/5.6–8 保服装面料细节｜1/160–1/200 同步｜多灯分组试光比 主:轮廓:背景 = 1:1:1.5。</span></div><div class="prow"><b>后期处理</b><span>色彩分级拉高饱和撞色（品红/青/橙分离）；面料细节锐化；双曲线雕衣饰立体；肤色瓷化但留唇眼饱和。</span></div></div></details>
+  </article>
+
+<!-- 10 -->
+<article class="style-card" id="s10">
+  <div class="figure" data-fig="10"><span class="no">10</span><div class="slide-track"><div class="slide"><img src="images/10-silhouette.png" alt="剪影人像" data-title="风格 10 · 参考图"></div><div class="slide"><img src="images/v2/10-silhouette.png" alt="剪影人像（Qwen-Image 2.1）" data-title="风格 10 · 剪影人像（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/10-silhouette-b.png" alt="剪影人像（Qwen-Image 2.1）" data-title="风格 10 · 剪影人像（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/10-silhouette-c.png" alt="剪影人像（Qwen-Image 2.1）" data-title="风格 10 · 剪影人像（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/10-silhouette-d.png" alt="剪影人像（Qwen-Image 2.1）" data-title="风格 10 · 剪影人像（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/10-silhouette-w1.png" alt="剪影人像（年轻女生版）" data-title="风格 10 · 剪影人像（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/10-silhouette-w2.png" alt="剪影人像（年轻女生版）" data-title="风格 10 · 剪影人像（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/10-silhouette-w3.png" alt="剪影人像（年轻女生版）" data-title="风格 10 · 剪影人像（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/10-silhouette-w4.png" alt="剪影人像（年轻女生版）" data-title="风格 10 · 剪影人像（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/10-silhouette-w5.png" alt="剪影人像（年轻女生版）" data-title="风格 10 · 剪影人像（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">SILHOUETTE</span>
+    <h2>剪影风格<small>纯黑轮廓 · 极简 · 图形美</small></h2>
+    <p class="desc">主体全黑、背景绚烂——成败在于「轮廓即一切」。侧脸、发髻、睫毛、舞步等清晰外轮廓才有识别度；正面或松散发丝会糊成一团黑。</p>
+    <div class="tips">
+      <div class="tip"><div class="ic">测</div><div><b>对背景最亮处测光</b><p>点测天空/光源，主体自然欠曝成纯黑；必要时手动降低 2–3 档曝光锁定（AE-L）。</p></div></div>
+      <div class="tip"><div class="ic">形</div><div><b>90° 侧面 + 收紧轮廓</b><p>正侧脸鼻梁唇形最清晰；肢体做出开放动作（举手、扬裙）让轮廓「可读」，衣服头发贴身利落。</p></div></div>
+      <div class="tip"><div class="ic">天</div><div><b>日落后的蓝调/火红时刻最佳</b><p>太阳落山后 10–20 分钟天空色彩浓度最高且亮度适中；人物站远、用长焦压缩，背景更纯净。</p></div></div>
+    </div>
+    <div class="params"><span>对天空点测</span><span>欠曝 2–3 EV</span><span>f/8 星芒可选</span><span>后期提饱和压黑</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>机身 + 16–35 或 24–70 广角；三脚架（长曝剪影可选）；遮光罩。</span></div><div class="prow"><b>场景</b><span>日落渐变天空/日出海面/发亮的白墙/大窗，天空必须干净无杂乱云絮；背景亮度要远大于人物。</span></div><div class="prow"><b>灯光</b><span>纯逆光：对天空最亮处（或亮部中心）点测并减 1–2 档，让人物完全欠曝成纯黑；人物轮廓要在亮区中完整勾勒——站在太阳/亮窗前但身体别遮挡最亮处；取消一切正面补光，撤掉反光板。</span></div><div class="prow"><b>人物与引导</b><span>90° 完整侧脸最出轮廓；姿态放大——发髻/马尾飞起、长裙摆展开、抬臂伸展、跳起定格，剪影里每个轮廓细节都是内容；教模特「做加法」：动作比平时大一倍。</span></div><div class="prow"><b>相机参数</b><span>ISO 100｜f/8–11 全景深｜对天空点测 0 到 -1EV｜手动对焦人物边缘（自动对焦会拉天空）。</span></div><div class="prow"><b>后期处理</b><span>黑场压实成纯黑无灰；天空饱和增强；边缘描边检查（细节毛边修净）；构图留大负空间。</span></div></div></details>
+  </article>
+
+<!-- 11 -->
+<article class="style-card" id="s11">
+  <div class="figure" data-fig="11"><span class="no">11</span><div class="slide-track"><div class="slide"><img src="images/11-retro-film.png" alt="复古胶片风" data-title="风格 11 · 参考图"></div><div class="slide"><img src="images/v2/11-retro-film.png" alt="复古胶片风（Qwen-Image 2.1）" data-title="风格 11 · 复古胶片风（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/11-retro-film-b.png" alt="复古胶片风（Qwen-Image 2.1）" data-title="风格 11 · 复古胶片风（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/11-retro-film-c.png" alt="复古胶片风（Qwen-Image 2.1）" data-title="风格 11 · 复古胶片风（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/11-retro-film-d.png" alt="复古胶片风（Qwen-Image 2.1）" data-title="风格 11 · 复古胶片风（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/11-retro-film-w1.png" alt="复古胶片风（年轻女生版）" data-title="风格 11 · 复古胶片风（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/11-retro-film-w2.png" alt="复古胶片风（年轻女生版）" data-title="风格 11 · 复古胶片风（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/11-retro-film-w3.png" alt="复古胶片风（年轻女生版）" data-title="风格 11 · 复古胶片风（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/11-retro-film-w4.png" alt="复古胶片风（年轻女生版）" data-title="风格 11 · 复古胶片风（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/11-retro-film-w5.png" alt="复古胶片风（年轻女生版）" data-title="风格 11 · 复古胶片风（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">RETRO FILM / 90s CANTONESE</span>
+    <h2>复古胶片风格<small>港风 · 霓虹 · 颗粒与失焦</small></h2>
+    <p class="desc">王家卫式 90 年代港片质感：浓烈红绿撞色、霓虹夜色、明显胶片颗粒、轻微拖影失焦。美在不完美——暧昧、潮湿、欲言又止。</p>
+    <div class="tips">
+      <div class="tip"><div class="ic">光</div><div><b>借霓虹与钨丝灯当主光</b><p>夜街招牌、霓虹、路灯就是天然色源；让彩色光源直接打在脸的一侧，另一侧留给环境色，冲突感即氛围。</p></div></div>
+      <div class="tip"><div class="ic">速</div><div><b>慢快门制造拖影</b><p>1/8–1/30s 手持或摇拍，让 motion blur 说话；配合慢速同步闪光「后帘同步」，人清晰、光轨拖尾。</p></div></div>
+      <div class="tip"><div class="ic">色</div><div><b>青橙/红绿对撞 + 重颗粒</b><p>后期向阴影加青、高光加红橙，降高光提暗部模拟褪色，叠胶片颗粒与轻微漏光；服装选红裙、衬衫、大背头等年代符号。</p></div></div>
+    </div>
+    <div class="params"><span>35mm 大光圈</span><span>1/15s 慢速同步</span><span>色温 3200–4200K 偏钨丝灯</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>机身 + 35mm 大光圈定焦（或胶片+80/160 度卷）；现场霓虹/灯管就是灯；CPL 去招牌反光。</span></div><div class="prow"><b>场景</b><span>夜晚霓虹招牌街、旧电梯楼、大排档、花市；雨夜湿地面出镜面反射最佳；找红绿招牌混杂的街角。</span></div><div class="prow"><b>灯光</b><span>霓虹招牌/灯管做主光——让模特站进招牌光边缘，一侧脸被红或绿直接染色、另一侧沉入暗部；不补光或极弱补光，高光允许过晕；灯管频闪注意快门避开 1/100 整数（试 1/60、1/50）；招牌亮度直接压进肤色形成红绿对撞。</span></div><div class="prow"><b>人物与引导</b><span>红唇/大波浪卷发/衬衫/缎面裙/大耳环；道具：玻璃杯、点烟、拨电话；表情忧郁失焦、不看镜头；动作慢（90 年代港片节奏）。</span></div><div class="prow"><b>相机参数</b><span>ISO 800–1600｜f/1.4–2 浅景深化开霓虹成光斑｜慢速 1/30–1/60 允许轻微糊（氛围即不完美）｜白平衡钨丝灯 3200K 保黄绿。</span></div><div class="prow"><b>后期处理</b><span>蓝向青绿、红偏品红的胶片对撞；颗粒 +25；轻微色差与失焦保留；高光加光晕（halation）；肤色黄绿不刻意修正。</span></div></div></details>
+  </article>
+
+<!-- 12 -->
+<article class="style-card" id="s12">
+  <div class="figure" data-fig="12"><span class="no">12</span><div class="slide-track"><div class="slide"><img src="images/12-double-exposure.png" alt="双重曝光" data-title="风格 12 · 参考图"></div><div class="slide"><img src="images/v2/12-double-exposure.png" alt="双重曝光（Qwen-Image 2.1）" data-title="风格 12 · 双重曝光（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/12-double-exposure-b.png" alt="双重曝光（Qwen-Image 2.1）" data-title="风格 12 · 双重曝光（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/12-double-exposure-c.png" alt="双重曝光（Qwen-Image 2.1）" data-title="风格 12 · 双重曝光（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/12-double-exposure-d.png" alt="双重曝光（Qwen-Image 2.1）" data-title="风格 12 · 双重曝光（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/12-double-exposure-w1.png" alt="双重曝光（年轻女生版）" data-title="风格 12 · 双重曝光（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/12-double-exposure-w2.png" alt="双重曝光（年轻女生版）" data-title="风格 12 · 双重曝光（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/12-double-exposure-w3.png" alt="双重曝光（年轻女生版）" data-title="风格 12 · 双重曝光（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/12-double-exposure-w4.png" alt="双重曝光（年轻女生版）" data-title="风格 12 · 双重曝光（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/12-double-exposure-w5.png" alt="双重曝光（年轻女生版）" data-title="风格 12 · 双重曝光（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">DOUBLE EXPOSURE</span>
+    <h2>双重曝光风格<small>人像 × 风景 · 超现实 · 概念</small></h2>
+    <p class="desc">两张照片叠成一首诗：剪影般的人像里装进森林、城市或飞鸟。逻辑是「亮部叠加」——人像越接近剪影、第二张风景层次越分明，画面越有呼吸感。</p>
+    <div class="tips">
+      <div class="tip"><div class="ic">拍</div><div><b>机内多重曝光：第一张压暗</b><p>相机 MULTIPLE EXPOSURE 模式连拍 2 张：人像欠曝 1.5–2 档（深色背景+侧光最佳），第二张正常曝光拍风景纹理。</p></div></div>
+      <div class="tip"><div class="ic">选</div><div><b>风景要有大留白 + 强线条</b><p>树枝、山脊、飞鸟等稀疏高对比素材最适合叠加；密集杂乱的风景会把人像「糊」掉。</p></div></div>
+      <div class="tip"><div class="ic">后</div><div><b>PS 用「变亮 / 滤色」混合</b><p>人像置底层，风景图层改为「变亮（Lighten）」或「滤色」，再蒙版微调两图交界；黑白基底最稳。</p></div></div>
+    </div>
+    <div class="params"><span>白/黑背景纯侧光人像</span><span>2–3 次叠加</span><span>混合模式：变亮</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>带多重曝光功能的机身；或双拍+PS。第一张要深色背景+侧光人像；第二张要高对比风景（森林枝干/城市线条/飞鸟）。</span></div><div class="prow"><b>场景</b><span>第一张：棚内黑背景，或户外暗墙前打侧光；第二张：逆光森林/剪影般的树枝/摩天楼群——中间调丰富的纹理图。</span></div><div class="prow"><b>灯光</b><span>第一张人像：欠曝 1.5–2 档，侧光让脸部接近剪影——人像越黑、叠加窗口越干净；只留眼神光一点高光；第二张风景：正常曝光，明暗丰富。机内叠加选「加法/最亮」模式。</span></div><div class="prow"><b>人物与引导</b><span>第一张用正侧脸或 3/4 侧面保轮廓完整；构图偏画面一侧留叠加空间；眼神必须有微弱光点否则全片失魂；动作静止。</span></div><div class="prow"><b>相机参数</b><span>第一张：点测人物 -1.5–2EV、ISO 100；第二张正常测光；机内 MULTIPLE EXPOSURE 连拍 2 张。</span></div><div class="prow"><b>后期处理</b><span>手动版：人像图层做亮度蒙版，风景以「变亮/滤色」叠加其上，不透明度 60–80%；画笔修饰交界；风景可反相/旋转找到最优构图（鸟从胸口飞出/森林长在头顶）。</span></div></div></details>
+  </article>
+
+<!-- 30 -->
+<article class="style-card" id="s30">
+  <div class="figure" data-fig="30"><span class="no">30</span><div class="slide-track"><div class="slide"><img src="images/v2/30-sunny-girl.png" alt="晴天少女（Qwen-Image 2.1）" data-title="风格 30 · 晴天少女（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/30-sunny-girl-b.png" alt="晴天少女（Qwen-Image 2.1）" data-title="风格 30 · 晴天少女（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/30-sunny-girl-c.png" alt="晴天少女（Qwen-Image 2.1）" data-title="风格 30 · 晴天少女（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/30-sunny-girl-d.png" alt="晴天少女（Qwen-Image 2.1）" data-title="风格 30 · 晴天少女（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/30-sunny-girl-e.png" alt="晴天少女（Qwen-Image 2.1）" data-title="风格 30 · 晴天少女（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/30-sunny-girl-w1.png" alt="晴天少女（年轻女生版）" data-title="风格 30 · 晴天少女（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/30-sunny-girl-w2.png" alt="晴天少女（年轻女生版）" data-title="风格 30 · 晴天少女（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/30-sunny-girl-w3.png" alt="晴天少女（年轻女生版）" data-title="风格 30 · 晴天少女（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/30-sunny-girl-w4.png" alt="晴天少女（年轻女生版）" data-title="风格 30 · 晴天少女（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/30-sunny-girl-w5.png" alt="晴天少女（年轻女生版）" data-title="风格 30 · 晴天少女（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">SUNNY GIRL</span>
+    <h2>晴天少女<small>烈日直闪 · 蓝天白云 · 夏日欢笑</small></h2>
+    <p class="desc">夏日正午的直白大光：让模特背对太阳、脸上靠反光板或跳闪补光，蓝天压得深邃、白云透亮，裙摆与发丝被逆光点燃——「晴天」本身就是风格：热烈、明快、毫无保留的青春感。</p>
+    <div class="tips"><div class="tip"><div class="ic">光</div><div><b>逆光 + 大反光板补脸</b><p>让太阳在人物身后，银色反光板距 1m 强力补光，或跳闪 +1EV；对脸点测，宁可轻微过曝保住通透。</p></div></div><div class="tip"><div class="ic">天</div><div><b>偏振镜压蓝天</b><p>CPL 转动到 90° 侧对太阳，蓝天变深邃白云更立体；蓝天背景穿白/黄裙撞色最出片。</p></div></div><div class="tip"><div class="ic">动</div><div><b>大笑 + 转圈 + 冰饮道具</b><p>冰棍、气泡水、草帽当道具；旋转裙摆连拍，捕捉眯眼大笑的瞬间就是味道。</p></div></div></div>
+    <div class="params"><span>1/400s+ 冻结动作</span><span>f/2.8 虚化前景草穗</span><span>+0.7EV</span><span>银色反光板必备</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>机身 + 35/85mm 大光圈；CPL 偏振镜（压蓝天神器）；银色反光板（大力补光）；机顶闪可选。</span></div><div class="prow"><b>场景</b><span>蓝天白云下的开阔草地/海边/白屋顶；太阳位置高、天够蓝的时段（10–15 点敢直拍）——这是唯一敢用正午光的风格。</span></div><div class="prow"><b>灯光</b><span>太阳在人物侧后方（发丝亮但脸不眯），银色反光板前下方 1m 强力补脸（银面比白面亮一档）；CPL 转到与太阳方向 90°，蓝天压深白云立体；或直闪 +1EV 硬补出夏日广告感；让背景蓝天占满。</span></div><div class="prow"><b>人物与引导</b><span>白色/鹅黄/浅粉夏裙，草帽/墨镜/冰棍/汽水道具；动作大笑、仰头喝汽水、旋转裙摆、追跑；头发让风吹乱是加分项；表情敢眯眼笑但眼神光要保住。</span></div><div class="prow"><b>相机参数</b><span>ISO 100｜f/2.8–4｜1/400s+ 冻结动作｜对脸 +2/3｜CPL 转动取景观察蓝天最深处停手。</span></div><div class="prow"><b>后期处理</b><span>蓝深化（HSL 蓝色饱和+明度降）；肤色小麦健康微橙；整体高饱和明快；发丝边缘提亮；云保留细节别过曝成一坨。</span></div></div></details>
+  </article>
+<!-- 31 -->
+<article class="style-card" id="s31">
+  <div class="figure" data-fig="31"><span class="no">31</span><div class="slide-track"><div class="slide"><img src="images/v2/31-forest-fresh.png" alt="森系清甜风（Qwen-Image 2.1）" data-title="风格 31 · 森系清甜风（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/31-forest-fresh-b.png" alt="森系清甜风（Qwen-Image 2.1）" data-title="风格 31 · 森系清甜风（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/31-forest-fresh-c.png" alt="森系清甜风（Qwen-Image 2.1）" data-title="风格 31 · 森系清甜风（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/31-forest-fresh-d.png" alt="森系清甜风（Qwen-Image 2.1）" data-title="风格 31 · 森系清甜风（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/31-forest-fresh-e.png" alt="森系清甜风（Qwen-Image 2.1）" data-title="风格 31 · 森系清甜风（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/31-forest-fresh-w1.png" alt="森系清甜风（年轻女生版）" data-title="风格 31 · 森系清甜风（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/31-forest-fresh-w2.png" alt="森系清甜风（年轻女生版）" data-title="风格 31 · 森系清甜风（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/31-forest-fresh-w3.png" alt="森系清甜风（年轻女生版）" data-title="风格 31 · 森系清甜风（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/31-forest-fresh-w4.png" alt="森系清甜风（年轻女生版）" data-title="风格 31 · 森系清甜风（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/31-forest-fresh-w5.png" alt="森系清甜风（年轻女生版）" data-title="风格 31 · 森系清甜风（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">FOREST FRESH</span>
+    <h2>森系清甜风<small>林间光斑 · 白裙花饰 · 绿意通透</small></h2>
+    <p class="desc">把少女放进森林：蕨叶、野花、白色碎花长裙，阳光透过树叶洒下移动的光斑，绿色背景虚化成奶油般的色块。核心是「清新甜润」——光线柔、色彩嫩、表情恬。</p>
+    <div class="tips"><div class="tip"><div class="ic">光</div><div><b>追树漏光斑</b><p>顺光/侧逆光穿过树冠，让光斑落在头发与肩头；正午林内光比乱，选清晨/傍晚或浓荫下的均匀散射。</p></div></div><div class="tip"><div class="ic">场</div><div><b>雨后/小雨的森林更绿</b><p>雨后叶绿素饱和、地面有倒影水光；选林相整齐的原生林，避开游人，用长焦抽离纯净绿背景。</p></div></div><div class="tip"><div class="ic">服</div><div><b>白裙碎花 + 花环道具</b><p>白色/浅碎花长裙与绿意互补；花环、藤篮、书本道具制造童话感，表情恬静带一点甜笑。</p></div></div></div>
+    <div class="params"><span>85mm f/1.8 奶油虚化</span><span>光斑落发丝</span><span>后期绿向加青减黄</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>机身 + 85/135mm f/1.8（奶油虚化的核心）；反光板；防虫（夏天森林）。</span></div><div class="prow"><b>场景</b><span>森林/竹林/蕨谷清晨雨后 8–10 点——叶绿饱和、空气有光柱；背景选干净树干方向长焦抽离。</span></div><div class="prow"><b>灯光</b><span>树漏光斑：侧逆光穿过树冠，让光斑落在头发/肩头（移动人物找光斑落点）；林内整体是浓荫散射光均匀柔；银色反光板补脸阴影；背景光斑（圆形 out-focus 太阳）是构图灵魂。</span></div><div class="prow"><b>人物与引导</b><span>白裙/浅碎花长裙+花环/藤篮/书；表情恬静带甜、动作轻（采花/转裙/仰头看树）；妆清透粉嫩；赤脚加分。</span></div><div class="prow"><b>相机参数</b><span>ISO 400–800（林内光低）｜f/1.8–2.8｜对脸 +1/3｜对焦点锁眼睛（光斑杂自动对焦易跑）。</span></div><div class="prow"><b>后期处理</b><span>绿色向青绿调（HSL 绿-黄+青）、黄色降；肤白净粉；高光光斑柔化；整体嫩感：对比微降明度升。</span></div></div></details>
+  </article>
+<!-- 32 -->
+<article class="style-card" id="s32">
+  <div class="figure" data-fig="32"><span class="no">32</span><div class="slide-track"><div class="slide"><img src="images/v2/32-blue-hour.png" alt="蓝调氛围（Qwen-Image 2.1）" data-title="风格 32 · 蓝调氛围（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/32-blue-hour-b.png" alt="蓝调氛围（Qwen-Image 2.1）" data-title="风格 32 · 蓝调氛围（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/32-blue-hour-c.png" alt="蓝调氛围（Qwen-Image 2.1）" data-title="风格 32 · 蓝调氛围（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/32-blue-hour-d.png" alt="蓝调氛围（Qwen-Image 2.1）" data-title="风格 32 · 蓝调氛围（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/32-blue-hour-e.png" alt="蓝调氛围（Qwen-Image 2.1）" data-title="风格 32 · 蓝调氛围（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/32-blue-hour-w1.png" alt="蓝调氛围（年轻女生版）" data-title="风格 32 · 蓝调氛围（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/32-blue-hour-w2.png" alt="蓝调氛围（年轻女生版）" data-title="风格 32 · 蓝调氛围（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/32-blue-hour-w3.png" alt="蓝调氛围（年轻女生版）" data-title="风格 32 · 蓝调氛围（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/32-blue-hour-w4.png" alt="蓝调氛围（年轻女生版）" data-title="风格 32 · 蓝调氛围（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/32-blue-hour-w5.png" alt="蓝调氛围（年轻女生版）" data-title="风格 32 · 蓝调氛围（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">BLUE HOUR</span>
+    <h2>蓝调氛围<small>日落后 20 分钟 · 宝蓝天空 · 冷暖对冲</small></h2>
+    <p class="desc">日落后天空呈现浓郁宝蓝的 20 分钟——「蓝调时刻」：天空亮度与城市灯光相当，深蓝背景 + 暖黄灯点形成天然冷暖对冲，情绪高级、色彩浓郁，夜景人像的黄金窗口。</p>
+    <div class="tips"><div class="tip"><div class="ic">时</div><div><b>只拍日落后 15–30 分钟</b><p>查日落时间，日落后 20 分钟到场；天空从宝蓝转死黑极快，错过只能靠后期伪造。</p></div></div><div class="tip"><div class="ic">测</div><div><b>对天空测光、脸补光</b><p>对蓝天空点测，人物用 LED 暖光或街灯补亮；大光圈 + 高 ISO 1600 以内保画质。</p></div></div><div class="tip"><div class="ic">色</div><div><b>冷蓝为主、一点暖锚</b><p>背景冷蓝占 80%，一盏暖黄橱窗灯/路灯做暖色锚点；后期蓝向青偏移、肤色保暖。</p></div></div></div>
+    <div class="params"><span>日落表倒推机位</span><span>WB 4000-4500K 保蓝</span><span>暖光源做点睛</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>机身 + 35/85mm 大光圈；便携 LED（暖光）或外拍闪；快门线。</span></div><div class="prow"><b>场景</b><span>城市天台俯瞰灯海/霓虹街口——日落前 20 分钟到位架机，日落后 15–30 分钟内拍完（天空宝蓝→死黑窗口极短，查日落表）。</span></div><div class="prow"><b>灯光</b><span>天空是天然宝蓝背景板；脸部用暖光 LED 低功率补（冷暖对撞：背景冷蓝、脸侧一点暖）；背景一盏暖黄橱窗灯/路灯做「暖锚」；对天空点测后人物补光找平衡；大光圈+ISO ≤1600。</span></div><div class="prow"><b>人物与引导</b><span>大衣/围巾/长发任风吹；表情安静略带忧郁、侧身回望；站冷暖交界（半边脸蹭橱窗暖光）；动作少靠情绪。</span></div><div class="prow"><b>相机参数</b><span>ISO 800–1600｜f/1.8–2.8｜白平衡 4000–4500K（故意偏冷保蓝）｜对天空测光 0、人物补 -1/3。</span></div><div class="prow"><b>后期处理</b><span>蓝向青偏移、肤色回暖（分离色调）；城市灯点锐化出星芒；对比拉高；暗角；天空蓝不浑浊（黑场压实）。</span></div></div></details>
+  </article>
+<!-- 33 -->
+<article class="style-card" id="s33">
+  <div class="figure" data-fig="33"><span class="no">33</span><div class="slide-track"><div class="slide"><img src="images/v2/33-farm.png" alt="田园农场（Qwen-Image 2.1）" data-title="风格 33 · 田园农场（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/33-farm-b.png" alt="田园农场（Qwen-Image 2.1）" data-title="风格 33 · 田园农场（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/33-farm-c.png" alt="田园农场（Qwen-Image 2.1）" data-title="风格 33 · 田园农场（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/33-farm-d.png" alt="田园农场（Qwen-Image 2.1）" data-title="风格 33 · 田园农场（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/33-farm-e.png" alt="田园农场（Qwen-Image 2.1）" data-title="风格 33 · 田园农场（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/33-farm-w1.png" alt="田园农场（年轻女生版）" data-title="风格 33 · 田园农场（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/33-farm-w2.png" alt="田园农场（年轻女生版）" data-title="风格 33 · 田园农场（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/33-farm-w3.png" alt="田园农场（年轻女生版）" data-title="风格 33 · 田园农场（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/33-farm-w4.png" alt="田园农场（年轻女生版）" data-title="风格 33 · 田园农场（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/33-farm-w5.png" alt="田园农场（年轻女生版）" data-title="风格 33 · 田园农场（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">PASTORAL FARM</span>
+    <h2>田园农场<small>麦浪草帽 · 木栅栏 · 丰收暖调</small></h2>
+    <p class="desc">农场与田野的丰收叙事：草帽、格子裙、装满蔬果的藤篮，身后是麦浪、谷仓与木栅栏。下午低角度的暖光把一切镀成蜂蜜色——治愈、质朴、烟火气与诗意并存。</p>
+    <div class="tips"><div class="tip"><div class="ic">场</div><div><b>麦田/果园/牧场三选一</b><p>找有纵深的垄沟或栅栏做引导线；红谷仓、风车做视觉符号，收割季（金黄）最经典。</p></div></div><div class="tip"><div class="ic">光</div><div><b>下午 4 点后侧逆光</b><p>低角度暖光让麦芒发丝发光；逆光加反光板补脸，暗部带暖，氛围翻倍。</p></div></div><div class="tip"><div class="ic">物</div><div><b>农活即动作指导</b><p>抱稻草、摘果子、喂小动物——手里有活表情自然；草帽角度别挡住眼神光。</p></div></div></div>
+    <div class="params"><span>35mm 带环境</span><span>f/4 保场景细节</span><span>蜂蜜色调</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>机身 + 35mm（环境农场）+ 85mm（特写）；金色反光板；草帽/藤篮/花束道具。</span></div><div class="prow"><b>场景</b><span>麦田/稻田/果园/牧场+红谷仓+木栅栏；垄沟/栅栏做引导线；收割季金黄最经典；下午 4 点后进场。</span></div><div class="prow"><b>灯光</b><span>低角度侧逆光：麦芒与发丝透光成金边、空气有浮尘光感；金反光板补脸暖上加暖；阴影侧保留暖褐（别补死）；逆光拍让镜头几乎对太阳出光雾。</span></div><div class="prow"><b>人物与引导</b><span>草帽+格子裙/工装+抱蔬果篮/喂小动物/剪羊毛——手里有活表情自然；草帽别压掉眼神光（帽檐抬起一点）；让模特真的干活 5 分钟再拍。</span></div><div class="prow"><b>相机参数</b><span>ISO 200–400｜f/4（场景可辨但前景草穗虚）｜对脸 +2/3｜白平衡 6000K+ 加暖。</span></div><div class="prow"><b>后期处理</b><span>蜂蜜暖调主导（高光橙金/阴影褐）；麦田饱和增强；天空向青；浮尘光提亮；肤色健康暖。</span></div></div></details>
+  </article>
+<!-- 34 -->
+<article class="style-card" id="s34">
+  <div class="figure" data-fig="34"><span class="no">34</span><div class="slide-track"><div class="slide"><img src="images/v2/34-hazy-dream.png" alt="唯美朦胧（Qwen-Image 2.1）" data-title="风格 34 · 唯美朦胧（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/34-hazy-dream-b.png" alt="唯美朦胧（Qwen-Image 2.1）" data-title="风格 34 · 唯美朦胧（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/34-hazy-dream-c.png" alt="唯美朦胧（Qwen-Image 2.1）" data-title="风格 34 · 唯美朦胧（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/34-hazy-dream-d.png" alt="唯美朦胧（Qwen-Image 2.1）" data-title="风格 34 · 唯美朦胧（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/34-hazy-dream-e.png" alt="唯美朦胧（Qwen-Image 2.1）" data-title="风格 34 · 唯美朦胧（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/34-hazy-dream-w1.png" alt="唯美朦胧（年轻女生版）" data-title="风格 34 · 唯美朦胧（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/34-hazy-dream-w2.png" alt="唯美朦胧（年轻女生版）" data-title="风格 34 · 唯美朦胧（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/34-hazy-dream-w3.png" alt="唯美朦胧（年轻女生版）" data-title="风格 34 · 唯美朦胧（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/34-hazy-dream-w4.png" alt="唯美朦胧（年轻女生版）" data-title="风格 34 · 唯美朦胧（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/34-hazy-dream-w5.png" alt="唯美朦胧（年轻女生版）" data-title="风格 34 · 唯美朦胧（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">SOFT HAZY DREAM</span>
+    <h2>唯美朦胧<small>柔焦滤镜 · 奥顿效果 · 印象派光晕</small></h2>
+    <p class="desc">像隔着一层雾在看美人：高光向四周晕开、轮廓融化在光里（奥顿效果 Orton Effect）。柔焦镜、黑丝袜滤镜或后期双层叠加都能实现——梦幻、印象派、仙气缭绕。</p>
+    <div class="tips"><div class="tip"><div class="ic">软</div><div><b>物理柔焦 or 后期双层</b><p>黑丝袜套镜头（边缘挖孔）立得柔光；后期：原图 + 高斯模糊大复制层，混合模式「柔光」20-40%。</p></div></div><div class="tip"><div class="ic">光</div><div><b>逆光/侧逆光是灵魂</b><p>只有明显光源才有可晕开的高光；清晨傍晚逆光拍摄，高光溢出但肤色保持曝光正常。</p></div></div><div class="tip"><div class="ic">场</div><div><b>薄雾/水汽/纱幔加持</b><p>加湿器、喷雾、飘纱制造介质；浅色服装 + 深色背景让光晕最明显，避免正午硬光。</p></div></div></div>
+    <div class="params"><span>高光 +0.5EV 溢而不切</span><span>后期双层柔光法</span><span>低对比粉彩调</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>机身 + 50/85mm f/1.4；柔焦镜（Black Mist 1/4）或黑丝袜蒙镜头（中心剪孔）；加湿器/喷雾瓶/飘纱。</span></div><div class="prow"><b>场景</b><span>清晨窗边逆光/湖边晨雾/逆光白纱帘后；必须有明确光源（太阳/窗光）才有可晕开的高光介质。</span></div><div class="prow"><b>灯光</b><span>侧逆光是灵魂：高光是柔晕的燃料——发丝、纱缘、水雾边缘过曝晕开；肤色保持正常曝光（高光 +0.5 溢而不切）；喷雾/加湿器/助理甩纱做介质；正午硬光禁用（光太硬晕不成）。</span></div><div class="prow"><b>人物与引导</b><span>浅色薄纱裙/白衬衫、散发任飘；姿态恬静半梦半醒（闭眼/回眸失焦感）；表情轻、动作慢；让纱从镜头前扫过加前景雾感。</span></div><div class="prow"><b>相机参数</b><span>ISO 100–200｜f/1.4–2｜+1/2EV｜对焦后手动微收防柔焦镜过软失焦。</span></div><div class="prow"><b>后期处理</b><span>后期 Orton 双层法：原图+高斯模糊 20–40px 复制层以「柔光」模式 25–40%；粉彩低对比；肤色乳白；高光加暖晕；整体「隔雾看人」。</span></div></div></details>
+  </article>
+<!-- 40 -->
+<article class="style-card" id="s40">
+  <div class="figure" data-fig="40"><span class="no">40</span><div class="slide-track"><div class="slide"><img src="images/v2/40-overcast.png" alt="阴天情绪（Qwen-Image 2.1）" data-title="风格 40 · 阴天情绪（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/40-overcast-b.png" alt="阴天情绪（Qwen-Image 2.1）" data-title="风格 40 · 阴天情绪（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/40-overcast-c.png" alt="阴天情绪（Qwen-Image 2.1）" data-title="风格 40 · 阴天情绪（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/40-overcast-d.png" alt="阴天情绪（Qwen-Image 2.1）" data-title="风格 40 · 阴天情绪（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/40-overcast-e.png" alt="阴天情绪（Qwen-Image 2.1）" data-title="风格 40 · 阴天情绪（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/40-overcast-w1.png" alt="阴天情绪（年轻女生版）" data-title="风格 40 · 阴天情绪（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/40-overcast-w2.png" alt="阴天情绪（年轻女生版）" data-title="风格 40 · 阴天情绪（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/40-overcast-w3.png" alt="阴天情绪（年轻女生版）" data-title="风格 40 · 阴天情绪（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/40-overcast-w4.png" alt="阴天情绪（年轻女生版）" data-title="风格 40 · 阴天情绪（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/40-overcast-w5.png" alt="阴天情绪（年轻女生版）" data-title="风格 40 · 阴天情绪（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">OVERCAST MOOD</span>
+    <h2>阴天情绪<small>漫射灰光 · 低饱和 · 安静的叙事</small></h2>
+    <p class="desc">阴天是情绪的温床：整片天空就是巨型柔光箱，光线平、影子淡、色彩灰——低饱和、低反差的「性冷淡」影调，配合空旷街头与风吹发丝，安静而高级的忧郁感。</p>
+    <div class="tips"><div class="tip"><div class="ic">曝</div><div><b>对脸 +0.7EV 防发闷</b><p>灰场景下相机容易欠曝，画面发脏；点测面部 +0.7EV，让灰干净通透而不是浑浊。</p></div></div><div class="tip"><div class="ic">服</div><div><b>低饱和同色系穿搭</b><p>燕麦色/雾蓝/灰粉同色系最贴氛围；鲜艳服装会打破忧郁基调（除非做撞色主体）。</p></div></div><div class="tip"><div class="ic">后</div><div><b>灰阶曲线 + 降饱和</b><p>提阴影压高光做雾感，饱和度 -20 留肤色；颗粒 +15 增强胶片叙事感，构图多留白偏一侧。</p></div></div></div>
+    <div class="params"><span>f/2.8 柔化杂乱街道</span><span>颗粒 +15</span><span>低反差雾感曲线</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>机身 + 35mm（环境）+ 85mm（特写）；不用闪光灯；三脚架可选。</span></div><div class="prow"><b>场景</b><span>阴天空旷街道/海边堤岸/天台——整片灰天空是柔光箱；环境要「空」：少人、少鲜艳招牌；雾雨前后更佳。</span></div><div class="prow"><b>灯光</b><span>全漫射平光：几乎无影、色彩自然低饱和——不补光是故意的；用环境的灰墙/玻璃做层次；对脸部 +0.7EV 防灰脏发闷；让天空在画面占 1/2–2/3（负空间=情绪）。</span></div><div class="prow"><b>人物与引导</b><span>燕麦/雾蓝/灰粉/炭灰同色系低饱和穿搭；表情安静低落（不表演悲伤，靠走神）；风吹发丝/插兜走路/倚栏背影；画面偏心构图大留白。</span></div><div class="prow"><b>相机参数</b><span>ISO 200–400｜f/2.8–4｜+2/3 到 +1EV（灰场景易欠曝发脏）｜白平衡中性偏冷。</span></div><div class="prow"><b>后期处理</b><span>饱和度 -20（肤色单独留）；提阴影压高光出雾感曲线；颗粒 +15；对比降半档；黑场不压死（灰要干净透明不浑浊）；整体向青灰。</span></div></div></details>
+  </article>
+
+  <div class="group-title" id="g3">主题与人物 · 13–18, 36, 38</div>
+<!-- 13 -->
+<article class="style-card" id="s13">
+  <div class="figure" data-fig="13"><span class="no">13</span><div class="slide-track"><div class="slide"><img src="images/13-hanfu.png" alt="国风古装" data-title="风格 13 · 参考图"></div><div class="slide"><img src="images/v2/13-hanfu.png" alt="国风古装（Qwen-Image 2.1）" data-title="风格 13 · 国风古装（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/13-hanfu-b.png" alt="国风古装（Qwen-Image 2.1）" data-title="风格 13 · 国风古装（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/13-hanfu-c.png" alt="国风古装（Qwen-Image 2.1）" data-title="风格 13 · 国风古装（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/13-hanfu-d.png" alt="国风古装（Qwen-Image 2.1）" data-title="风格 13 · 国风古装（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/13-hanfu-w1.png" alt="国风古装（年轻女生版）" data-title="风格 13 · 国风古装（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/13-hanfu-w2.png" alt="国风古装（年轻女生版）" data-title="风格 13 · 国风古装（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/13-hanfu-w3.png" alt="国风古装（年轻女生版）" data-title="风格 13 · 国风古装（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/13-hanfu-w4.png" alt="国风古装（年轻女生版）" data-title="风格 13 · 国风古装（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/13-hanfu-w5.png" alt="国风古装（年轻女生版）" data-title="风格 13 · 国风古装（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">HANFU · GUOFENG</span>
+    <h2>国风古装风格<small>汉服 · 水墨意境 · 古典姿态</small></h2>
+    <p class="desc">汉服 + 园林/花海/山水，追求东方留白与「画意」。宽袖、纱幔、团扇都是天然的动态道具，风一吹衣袂飘飘，成片自带武侠电影质感。</p>
+    <div class="tips">
+      <div class="tip"><div class="ic">场</div><div><b>选对场景等于成功一半</b><p>园林、竹林、古镇、梅花/樱花季是标配；避开现代招牌与柏油路，阴天散射光最贴合水墨调。</p></div></div>
+      <div class="tip"><div class="ic">动</div><div><b>用袖、扇、纱制造动态</b><p>甩袖、回眸、隔扇半遮面；1/250s 定住衣摆，或 1/15s 慢门让纱幔拖出柔影。</p></div></div>
+      <div class="tip"><div class="ic">色</div><div><b>淡雅降饱和 + 留白构图</b><p>后期往青灰/米白靠，人物偏小、大面积留白模拟国画构图；妆造严格遵循年代形制更耐看。</p></div></div>
+    </div>
+    <div class="params"><span>85mm 虚化杂乱</span><span>顺光纱幔挡柔</span><span>低饱和青灰调</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>机身 + 85/135mm f/2（虚化园林）+ 70–200（抓月洞窗框景）；金色反光板；道具：团扇/油纸伞/琵琶/马面裙撑。</span></div><div class="prow"><b>场景</b><span>中式园林（回廊美人靠/月洞门/竹林/太湖石），花季梅花-樱花-海棠接力；室内用水墨壁纸或书法纱幔背景；选阴天/开阔阴影柔光天。</span></div><div class="prow"><b>灯光</b><span>散射柔光为基调——丝绸缎面在硬光下显廉价反光，柔光才出高级质感；侧后方金反光板轻补让裙摆泛暖；室内用窗光+纱帘二次柔化；避免正午直射。</span></div><div class="prow"><b>人物与引导</b><span>明制马面裙/唐制齐胸/宋制褙子按形制穿对；发型高髻+发簪花饰；妆容远山眉+花钿+咬唇；姿势：执扇半遮面/提裙回眸/抬袖/凭栏——动作放慢半拍；练手型：拇指食指轻捏、中指自然翘。</span></div><div class="prow"><b>相机参数</b><span>ISO 200｜f/2–2.8 化开园林人群｜+2/3EV｜白平衡微暖。</span></div><div class="prow"><b>后期处理</b><span>画意调色：青绿向、暖褐保留、高光柔化；轻晕影；肤色白玉感降红；服饰花色饱和微增；可加 3–5% 水墨素材肌理。</span></div></div></details>
+  </article>
+
+<!-- 14 -->
+<article class="style-card" id="s14">
+  <div class="figure" data-fig="14"><span class="no">14</span><div class="slide-track"><div class="slide"><img src="images/14-environmental.png" alt="环境职业人像" data-title="风格 14 · 参考图"></div><div class="slide"><img src="images/v2/14-environmental.png" alt="环境职业人像（Qwen-Image 2.1）" data-title="风格 14 · 环境职业人像（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/14-environmental-b.png" alt="环境职业人像（Qwen-Image 2.1）" data-title="风格 14 · 环境职业人像（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/14-environmental-c.png" alt="环境职业人像（Qwen-Image 2.1）" data-title="风格 14 · 环境职业人像（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/14-environmental-d.png" alt="环境职业人像（Qwen-Image 2.1）" data-title="风格 14 · 环境职业人像（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/14-environmental-w1.png" alt="环境职业人像（年轻女生版）" data-title="风格 14 · 环境职业人像（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/14-environmental-w2.png" alt="环境职业人像（年轻女生版）" data-title="风格 14 · 环境职业人像（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/14-environmental-w3.png" alt="环境职业人像（年轻女生版）" data-title="风格 14 · 环境职业人像（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/14-environmental-w4.png" alt="环境职业人像（年轻女生版）" data-title="风格 14 · 环境职业人像（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/14-environmental-w5.png" alt="环境职业人像（年轻女生版）" data-title="风格 14 · 环境职业人像（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">ENVIRONMENTAL</span>
+    <h2>环境职业人像<small>工作场景 · 身份叙事 · 匠人</small></h2>
+    <p class="desc">让人物在其工作场所出镜：面包房、画室、修车铺、实验室。环境里的道具、光线与动作共同回答「TA 是做什么的」，比白背景头像信息量大十倍。</p>
+    <div class="tips">
+      <div class="tip"><div class="ic">选</div><div><b>挑「有信息量」的道具入画</b><p>手上有动作（刨木头、拉胚、炒菜），背景有职业符号；先清理画面里无关的杂物。</p></div></div>
+      <div class="tip"><div class="ic">光</div><div><b>一支热靴闪/LED 提亮人物</b><p>现场光通常把人和背景糊在一起，给人物加 1/2 挡光比即可从环境中「站」出来。</p></div></div>
+      <div class="tip"><div class="ic">摄</div><div><b>24-70 中焦记录工作流</b><p>f/4–5.6 保留环境细节；连拍抓动作峰值瞬间（木屑腾起的刹那）。</p></div></div>
+    </div>
+    <div class="params"><span>35-50mm f/4</span><span>人物比背景亮 0.5-1EV</span><span>视线可做任务不看镜</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>机身 + 35mm（带环境）+ 85mm（肖像特写）两支；便携 LED 常亮灯或闪光灯+柔光罩；三脚架辅助。</span></div><div class="prow"><b>场景</b><span>被拍者真实工作现场：木匠作坊/后厨/实验室/陶艺室。保留真实杂物（工具/原料/半成品=故事），只清走垃圾袋、无关插座、现代广告。</span></div><div class="prow"><b>灯光</b><span>环境光打底 + 单灯只提人物：窗外光或顶灯保留，闪光灯打天花板跳闪（白顶）或低功率直打人物脸部；测光环境比人物暗 1 档——人物亮一档从环境中浮出；有尘埃/蒸汽的光束扫过人物是加分项，别关灯。</span></div><div class="prow"><b>人物与引导</b><span>穿工作装/围裙、手上有活（刨木/颠勺/揉泥）——先让 TA 工作 10 分钟完全入定再拍；拍动作中段与专注侧脸，不喊看镜头微笑；让工具与人形成对角线构图。</span></div><div class="prow"><b>相机参数</b><span>ISO 400–800｜f/4–5.6（环境可辨但不抢戏）｜对脸部测光｜快门 ≥1/125 冻结动作。</span></div><div class="prow"><b>后期处理</b><span>真实肤色保留（工人偏红黑不磨白）；环境降饱和人物提对比；保留锯末/水珠/蒸汽细节；裁切交代环境纵深。</span></div></div></details>
+  </article>
+
+<!-- 15 -->
+<article class="style-card" id="s15">
+  <div class="figure" data-fig="15"><span class="no">15</span><div class="slide-track"><div class="slide"><img src="images/15-corporate.png" alt="商务形象照" data-title="风格 15 · 参考图"></div><div class="slide"><img src="images/v2/15-corporate.png" alt="商务形象照（Qwen-Image 2.1）" data-title="风格 15 · 商务形象照（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/15-corporate-b.png" alt="商务形象照（Qwen-Image 2.1）" data-title="风格 15 · 商务形象照（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/15-corporate-c.png" alt="商务形象照（Qwen-Image 2.1）" data-title="风格 15 · 商务形象照（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/15-corporate-d.png" alt="商务形象照（Qwen-Image 2.1）" data-title="风格 15 · 商务形象照（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/15-corporate-w1.png" alt="商务形象照（年轻女生版）" data-title="风格 15 · 商务形象照（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/15-corporate-w2.png" alt="商务形象照（年轻女生版）" data-title="风格 15 · 商务形象照（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/15-corporate-w3.png" alt="商务形象照（年轻女生版）" data-title="风格 15 · 商务形象照（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/15-corporate-w4.png" alt="商务形象照（年轻女生版）" data-title="风格 15 · 商务形象照（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/15-corporate-w5.png" alt="商务形象照（年轻女生版）" data-title="风格 15 · 商务形象照（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">CORPORATE HEADSHOT</span>
+    <h2>商务形象照风格<small>专业 · 信赖感 · 蝴蝶光</small></h2>
+    <p class="desc">LinkedIn、公司官网、演讲海报的硬通货。关键是「干净 + 有神」：均匀无硬影的布光、锐利眼神光、得体的表情与着装，传递可靠与专业。</p>
+    <div class="tips">
+      <div class="tip"><div class="ic">光</div><div><b>蝴蝶光（环形布光）最显职业</b><p>主灯高位正面，鼻下留一小撮对称阴影；加反光板/白底伞补眼下阴影，眼神光立现。</p></div></div>
+      <div class="tip"><div class="ic">表</div><div><b>「先大笑再收」出自然微笑</b><p>让被拍者大笑后瞬间收住，就是恰到好处的职场微笑；眼睛要有神，必要时补一盏 tiny 眼神光。</p></div></div>
+      <div class="tip"><div class="ic">修</div><div><b>修瑕不修脸</b><p>去临时痘印、理顺碎发即可；过度磨皮与瘦脸会毁掉信任感，西装肩线要烫平。</p></div></div>
+    </div>
+    <div class="params"><span>85-135mm f/4-5.6</span><span>灰渐变背景最百搭</span><span>ISO 100 低感</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>机身 + 85mm f/2；雷达罩（带柔光布）做主灯；白色大反光板；发丝光条形灯；灰渐变背景纸。</span></div><div class="prow"><b>场景</b><span>影棚灰色无缝纸（中心亮四角暗），或办公室玻璃窗前（背景可辨但净空）。</span></div><div class="prow"><b>灯光</b><span>蝴蝶光：雷达罩在人物正面前上方 45° 俯角对准额头，让鼻底出现对称小三角影——商务标准布光；下巴正下方向白色反光板补平脸颊阴影；发丝光后上方 45° 勾肩线与发缘防深色西装融进背景；光比 1:1.5 干净利落。</span></div><div class="prow"><b>人物与引导</b><span>藏青/深灰西装+领带（熨烫挺括）、白衬衫领硬；发型整齐；妆容哑光；表情自信露齿浅笑、眼神正视镜头（信任感）；躯干微侧、双肩放平对镜头；手持文件夹/整袖扣交代职业细节。</span></div><div class="prow"><b>相机参数</b><span>ISO 100｜f/5.6–8（前后全清晰）｜点测面部 0｜白平衡 5600K 中性。</span></div><div class="prow"><b>后期处理</b><span>修容：去斑去碎发、领带中线校正、肩线水平校正；灰背景修出渐变；眼睛提亮+锐化；西装向蓝灰质感；皮肤中性不偏黄。</span></div></div></details>
+  </article>
+
+<!-- 16 -->
+<article class="style-card" id="s16">
+  <div class="figure" data-fig="16"><span class="no">16</span><div class="slide-track"><div class="slide"><img src="images/16-wedding.png" alt="婚纱摄影" data-title="风格 16 · 参考图"></div><div class="slide"><img src="images/v2/16-wedding.png" alt="婚纱摄影（Qwen-Image 2.1）" data-title="风格 16 · 婚纱摄影（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/16-wedding-b.png" alt="婚纱摄影（Qwen-Image 2.1）" data-title="风格 16 · 婚纱摄影（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/16-wedding-c.png" alt="婚纱摄影（Qwen-Image 2.1）" data-title="风格 16 · 婚纱摄影（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/16-wedding-d.png" alt="婚纱摄影（Qwen-Image 2.1）" data-title="风格 16 · 婚纱摄影（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/16-wedding-w1.png" alt="婚纱摄影（年轻女生版）" data-title="风格 16 · 婚纱摄影（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/16-wedding-w2.png" alt="婚纱摄影（年轻女生版）" data-title="风格 16 · 婚纱摄影（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/16-wedding-w3.png" alt="婚纱摄影（年轻女生版）" data-title="风格 16 · 婚纱摄影（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/16-wedding-w4.png" alt="婚纱摄影（年轻女生版）" data-title="风格 16 · 婚纱摄影（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/16-wedding-w5.png" alt="婚纱摄影（年轻女生版）" data-title="风格 16 · 婚纱摄影（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">WEDDING · COUPLE</span>
+    <h2>婚纱 / 情侣写真<small>仪式感 · 双人互动 · 大光比压制</small></h2>
+    <p class="desc">婚纱是「光线 + 情绪」的综合大考：白纱与黑西装同框意味着极端反差，海边、草坪、黄昏是高频场景，成片核心是两人之间真实的亲密流动。</p>
+    <div class="tips">
+      <div class="tip"><div class="ic">光</div><div><b>白纱测光宁过勿欠</b><p>对婚纱白纱点测 +1.3EV 保住纱质层次；逆光时用反光板或外拍灯给脸部补 1 挡。</p></div></div>
+      <div class="tip"><div class="ic">动</div><div><b>引导互动而非「看镜头笑」</b><p>快走、旋转、额头相抵、耳边说话——裙摆与头纱动起来，连拍选最自然的一帧。</p></div></div>
+      <div class="tip"><div class="ic">序</div><div><b>一次拍摄多种景别收齐</b><p>大场景（人小景大）→ 半身 → 手部戒指/头纱特写，一套动作切三个景别，后期排版才够丰富。</p></div></div>
+    </div>
+    <div class="params"><span>70-200mm 抓互动</span><span>35mm 大场景</span><span>黄金时刻 + 逆光</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>双机身（可选）+ 35/85/70–200；银色反光板或外拍灯；助理吹头纱；手捧花/花瓣。</span></div><div class="prow"><b>场景</b><span>海边礁石/森林草坪/欧式街区/天台，黄金时刻（日落前 40 分钟）或蓝调时刻；机位先勘：背景要干净（海平线/草坪尽头）。</span></div><div class="prow"><b>灯光</b><span>黄金时刻：太阳侧后打透头纱（纱半透明发光），金反光板补脸部；人物转向让纱飘起角度；蓝调：外拍灯+暖光 LED 补人，背景天空与灯光亮度相当；逆光拍时用裙摆挡太阳制造光斑雨。</span></div><div class="prow"><b>人物与引导</b><span>裙摆够长让风或助理扬起定格；互动引导：额头贴额头/一起大笑/走远回眸/转圈——让「真实笑」而不是「摆笑」；两套动作连拍 20 张挑一帧。</span></div><div class="prow"><b>相机参数</b><span>ISO 100–400｜f/1.8–2.8（人清晰裙摆融入虚化）｜对脸 +1/3、直方图右不碰壁（婚纱高光别死）｜连拍模式。</span></div><div class="prow"><b>后期处理</b><span>白色婚纱校白平衡偏中性带奶油；肤色粉白通透；海天向青蓝；头纱加柔光晕；整组统一色调成片。</span></div></div></details>
+  </article>
+
+<!-- 17 -->
+<article class="style-card" id="s17">
+  <div class="figure" data-fig="17"><span class="no">17</span><div class="slide-track"><div class="slide"><img src="images/17-beauty.png" alt="美妆特写" data-title="风格 17 · 参考图"></div><div class="slide"><img src="images/v2/17-beauty.png" alt="美妆特写（Qwen-Image 2.1）" data-title="风格 17 · 美妆特写（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/17-beauty-b.png" alt="美妆特写（Qwen-Image 2.1）" data-title="风格 17 · 美妆特写（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/17-beauty-c.png" alt="美妆特写（Qwen-Image 2.1）" data-title="风格 17 · 美妆特写（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/17-beauty-d.png" alt="美妆特写（Qwen-Image 2.1）" data-title="风格 17 · 美妆特写（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/17-beauty-w1.png" alt="美妆特写（年轻女生版）" data-title="风格 17 · 美妆特写（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/17-beauty-w2.png" alt="美妆特写（年轻女生版）" data-title="风格 17 · 美妆特写（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/17-beauty-w3.png" alt="美妆特写（年轻女生版）" data-title="风格 17 · 美妆特写（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/17-beauty-w4.png" alt="美妆特写（年轻女生版）" data-title="风格 17 · 美妆特写（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/17-beauty-w5.png" alt="美妆特写（年轻女生版）" data-title="风格 17 · 美妆特写（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">BEAUTY · CLOSE-UP</span>
+    <h2>美妆 / 五官特写<small>微距 · 细节 · 广告级质感</small></h2>
+    <p class="desc">只取五官局部，把皮肤质感、妆容细节放大到极致。美妆广告、皮肤管理、珠宝耳饰都靠它——对「干净」和「锐」的要求最高。</p>
+    <div class="tips">
+      <div class="tip"><div class="ic">光</div><div><b>环形灯 / 大光源正面近距离</b><p>光源相对脸部越大越柔，瞳孔里的圆环形眼神光是标志；蝴蝶光 + 底反光板消灭所有阴影。</p></div></div>
+      <div class="tip"><div class="ic">焦</div><div><b>100mm 微距、对睫毛/虹膜</b><p>f/8–11 保细节（特写下浅景深会糊掉半张脸）；三脚架 + 快门线，对焦放最近的眼睛或睫毛尖。</p></div></div>
+      <div class="tip"><div class="ic">妆</div><div><b>前期妆面决定 80% 成片</b><p>哑光打底防油光、唇部护理提前一天做；后期只做高低频磨皮保纹理，唇色眼色单独调。</p></div></div>
+    </div>
+    <div class="params"><span>100mm 微距 f/8+</span><span>环形灯/雷灯柔光</span><span>三脚架低 ISO</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>微距 100mm f/2.8（或 85mm+近摄环）；环形闪光灯（招牌环形眼神光）或大八角+两侧条形灯；微距导轨；喷雾瓶。</span></div><div class="prow"><b>场景</b><span>棚内极近距离面部特写，肤色/裸粉/黑背景；空调开低防出汗。</span></div><div class="prow"><b>灯光</b><span>环形闪光灯正面同轴：零阴影、瞳孔中央完整圆环光是标志；或大八角正面 + 两条竖灯左右勾鼻梁与唇峰立体；皮肤喷甘油水混合液出珠光水光；眼部单独小补光出星点。</span></div><div class="prow"><b>人物与引导</b><span>妆容是主角：眼妆叠到极精细（单簇睫毛/眼线/闪片）、唇釉高光；底妆水光湿润；构图一只眼+眉占满画面，或唇部居中对称；让模特眼睛湿润（打哈欠/眼药水）出泪光。</span></div><div class="prow"><b>相机参数</b><span>ISO 100｜f/8–11（微距景深极浅，焦点钉在虹膜/唇峰）｜1/160 同步｜手动对焦+微距导轨微调。</span></div><div class="prow"><b>后期处理</b><span>逐像素去痘去死皮（保留皮肤纹理）；虹膜提亮锐化、反光点保留；高光（唇/珠光）恢复不过曝；磨皮用高低频，通道修唇色饱和。</span></div></div></details>
+  </article>
+
+<!-- 18 -->
+<article class="style-card" id="s18">
+  <div class="figure" data-fig="18"><span class="no">18</span><div class="slide-track"><div class="slide"><img src="images/18-children.png" alt="儿童纪实" data-title="风格 18 · 参考图"></div><div class="slide"><img src="images/v2/18-children.png" alt="儿童纪实（Qwen-Image 2.1）" data-title="风格 18 · 儿童纪实（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/18-children-b.png" alt="儿童纪实（Qwen-Image 2.1）" data-title="风格 18 · 儿童纪实（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/18-children-c.png" alt="儿童纪实（Qwen-Image 2.1）" data-title="风格 18 · 儿童纪实（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/18-children-d.png" alt="儿童纪实（Qwen-Image 2.1）" data-title="风格 18 · 儿童纪实（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/18-children-w1.png" alt="儿童纪实（年轻女生版）" data-title="风格 18 · 儿童纪实（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/18-children-w2.png" alt="儿童纪实（年轻女生版）" data-title="风格 18 · 儿童纪实（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/18-children-w3.png" alt="儿童纪实（年轻女生版）" data-title="风格 18 · 儿童纪实（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/18-children-w4.png" alt="儿童纪实（年轻女生版）" data-title="风格 18 · 儿童纪实（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/18-children-w5.png" alt="儿童纪实（年轻女生版）" data-title="风格 18 · 儿童纪实（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">CHILDREN</span>
+    <h2>儿童玩乐纪实风格<small>低视角 · 高速连拍 · 真情绪</small></h2>
+    <p class="desc">最好的儿童照从不喊「看镜头笑一个」：在他们玩耍时抓拍，蹲下到孩子的高度，水花、奔跑、大笑都被凝固成最鲜活的生命力。</p>
+    <div class="tips">
+      <div class="tip"><div class="ic">位</div><div><b>相机降到孩子眼睛的高度</b><p>跪地、趴下都值——平视视角的世界才是孩子的世界；仰角拍显得高大，俯拍只有大人视角。</p></div></div>
+      <div class="tip"><div class="ic">速</div><div><b>1/500s+ 连拍抓动作</b><p>户外大晴天 1/1000s 冻住水花与奔跑；开启 AI 追焦/连续对焦，高速连拍后选表情最完整的一帧。</p></div></div>
+      <div class="tip"><div class="ic">玩</div><div><b>摄影师当玩伴，不当导演</b><p>泡泡机、喷水壶、奔跑游戏制造真笑容；穿纯色童装、选草坪沙滩等干净背景出片率高。</p></div></div>
+    </div>
+    <div class="params"><span>35-70mm 灵活变焦</span><span>1/500s–1/1000s</span><span>连拍 + 眼部追焦</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>机身 + 35/50mm f/1.8；闪光灯（高速同步）或纯快门优先；连拍必备。</span></div><div class="prow"><b>场景</b><span>花园草坪+洒水器/浅水池/泡泡机，正午到下午侧光时段；水背景选深绿灌木前出水珠最显眼。</span></div><div class="prow"><b>灯光</b><span>阳光侧逆让水珠晶莹发亮（水珠是高光点）；银色反光板或闪光 +1EV 补脸；高速快门凝固水花是关键——光不够就提 ISO 别降快门；逆光下水花=钻石效果。</span></div><div class="prow"><b>人物与引导</b><span>鲜艳夏装/泳衣，被泼水/踩水/头顶倒水的真实大笑瞬间；摄影师蹲到腰部高度平视；引导「跑着穿过洒水器」动作自然水花大；泡泡满天时连拍。</span></div><div class="prow"><b>相机参数</b><span>ISO 200–800｜快门 ≥1/1000 冻结水珠｜f/2.8｜AF-C 连续对焦脸部 + 高速连拍。</span></div><div class="prow"><b>后期处理</b><span>高饱和明快色调；水珠处锐化提亮；肤色明亮健康；从连拍里挑水花形状最好+表情最真的那一帧；可轻微包围拼合成最完美瞬间。</span></div></div></details>
+  </article>
+
+<!-- 36 -->
+<article class="style-card" id="s36">
+  <div class="figure" data-fig="36"><span class="no">36</span><div class="slide-track"><div class="slide"><img src="images/v2/36-oil-painting.png" alt="复古油画风（Qwen-Image 2.1）" data-title="风格 36 · 复古油画风（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/36-oil-painting-b.png" alt="复古油画风（Qwen-Image 2.1）" data-title="风格 36 · 复古油画风（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/36-oil-painting-c.png" alt="复古油画风（Qwen-Image 2.1）" data-title="风格 36 · 复古油画风（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/36-oil-painting-d.png" alt="复古油画风（Qwen-Image 2.1）" data-title="风格 36 · 复古油画风（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/36-oil-painting-e.png" alt="复古油画风（Qwen-Image 2.1）" data-title="风格 36 · 复古油画风（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/36-oil-painting-w1.png" alt="复古油画风（年轻女生版）" data-title="风格 36 · 复古油画风（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/36-oil-painting-w2.png" alt="复古油画风（年轻女生版）" data-title="风格 36 · 复古油画风（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/36-oil-painting-w3.png" alt="复古油画风（年轻女生版）" data-title="风格 36 · 复古油画风（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/36-oil-painting-w4.png" alt="复古油画风（年轻女生版）" data-title="风格 36 · 复古油画风（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/36-oil-painting-w5.png" alt="复古油画风（年轻女生版）" data-title="风格 36 · 复古油画风（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">CLASSICAL OIL PAINTING</span>
+    <h2>复古油画风<small>伦勃朗光 · 丝绒蕾丝 · 笔触画布纹</small></h2>
+    <p class="desc">把照片拍成博物馆藏品：暗调 + 戏剧性侧光、丝绒与蕾丝的厚重质感、暖褐旧化色调，后期叠加笔触与画布纹理——古典主义油画的摄影转译，贵气、沉静、永恒。</p>
+    <div class="tips"><div class="tip"><div class="ic">光</div><div><b>单灯深暗调侧光</b><p>模仿 Rembrandt：单灯 45° 高位、暗部大面积沉入黑色；光比 1:8 以上，背景深色吸光。</p></div></div><div class="tip"><div class="ic">服</div><div><b>丝绒/蕾丝/珍珠元素</b><p>深祖母绿、酒红、藏蓝丝绒面料最出「油画感」；珍珠耳饰、蕾丝领口、束腰廓形做年代符号。</p></div></div><div class="tip"><div class="ic">后</div><div><b>暖褐 + 画布纹理</b><p>曲线压青提暖褐做旧化清漆感；叠加真实笔刷涂抹 + 画布纹理素材 15-25%；肤色用分离色调加暖。</p></div></div></div>
+    <div class="params"><span>单灯 + 黑色旗板</span><span>深色系服装</span><span>画布纹 20% 叠加</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>机身 + 50/85mm；单灯标准罩+束光板（或裸灯）+ 黑旗；暖色片/3200K 常亮灯；深色天鹅绒幕布背景。</span></div><div class="prow"><b>场景</b><span>棚内仿古典画室：深棕/墨绿天鹅绒背景、做旧木家具/烛台/地球仪道具；环境全吸光（黑布盖杂光）。</span></div><div class="prow"><b>灯光</b><span>单灯仿伦勃朗：前侧 45°、高于头，光比 1:8——亮侧立体如油画高光、暗侧沉入深褐；黑旗挡溢光让背景纯黑；灯光加 1/4 CTO 暖色片或常亮钨丝灯打暖光（画感的暖来自光源本色）。</span></div><div class="prow"><b>人物与引导</b><span>深祖母绿/酒红/藏蓝丝绒+蕾丝领+珍珠耳饰（面料厚重才出笔触质感）；姿态端庄静止如肖像画 pose（一手搭扶椅/双手交叠）；眼神平静直视；妆容古典（哑光+深唇）。</span></div><div class="prow"><b>相机参数</b><span>ISO 100–200｜f/2.8–4｜点测受光面 -1/3（压暗保画感）｜白平衡 3800–4300K 偏暖。</span></div><div class="prow"><b>后期处理</b><span>暖褐做旧清漆调（蓝向零、橙黄为主）；叠加真实笔刷涂抹素材 + 画布纹理 15–25%（混合模式柔光/叠加）；肤色分离色调加暖；黑场偏褐不死黑。</span></div></div></details>
+  </article>
+<!-- 38 -->
+<article class="style-card" id="s38">
+  <div class="figure" data-fig="38"><span class="no">38</span><div class="slide-track"><div class="slide"><img src="images/v2/38-korean-cream.png" alt="韩系奶油（Qwen-Image 2.1）" data-title="风格 38 · 韩系奶油（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/38-korean-cream-b.png" alt="韩系奶油（Qwen-Image 2.1）" data-title="风格 38 · 韩系奶油（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/38-korean-cream-c.png" alt="韩系奶油（Qwen-Image 2.1）" data-title="风格 38 · 韩系奶油（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/38-korean-cream-d.png" alt="韩系奶油（Qwen-Image 2.1）" data-title="风格 38 · 韩系奶油（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/38-korean-cream-e.png" alt="韩系奶油（Qwen-Image 2.1）" data-title="风格 38 · 韩系奶油（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/38-korean-cream-w1.png" alt="韩系奶油（年轻女生版）" data-title="风格 38 · 韩系奶油（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/38-korean-cream-w2.png" alt="韩系奶油（年轻女生版）" data-title="风格 38 · 韩系奶油（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/38-korean-cream-w3.png" alt="韩系奶油（年轻女生版）" data-title="风格 38 · 韩系奶油（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/38-korean-cream-w4.png" alt="韩系奶油（年轻女生版）" data-title="风格 38 · 韩系奶油（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/38-korean-cream-w5.png" alt="韩系奶油（年轻女生版）" data-title="风格 38 · 韩系奶油（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">KOREAN CREAM</span>
+    <h2>韩系奶油<small>奶油色调 · 水光肌 · 影楼柔光</small></h2>
+    <p class="desc">韩国证件照/照相馆的甜蜜质感：像奶油一样化开的暖米色调、水光玻璃肌、低对比高亮度、米色背景与针织衫——温柔、干净、零攻击性，当下最火的影楼风格。</p>
+    <div class="tips"><div class="tip"><div class="ic">光</div><div><b>大柔光 + 极小光比</b><p>巨型柔光箱正面偏上 + 底反光板，脸上几乎无影；光比 ≤1:1.5，柔光是奶油的地基。</p></div></div><div class="tip"><div class="ic">肤</div><div><b>水光肌打底是关键</b><p>妆前做好保湿、T区外留光泽；拍摄前喷雾补水珠质感；后期保留皮肤光泽只清临时瑕疵。</p></div></div><div class="tip"><div class="ic">色</div><div><b>米奶油全画面统一</b><p>背景米色、服装燕麦/奶白、发色棕调统一；后期高光偏奶油黄、阴影偏奶咖，饱和度微降明度拉高。</p></div></div></div>
+    <div class="params"><span>白平衡偏暖 5500K</span><span>高光 +0.3 拉明度</span><span>统一米色系</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>机身 + 85mm f/1.8–2；巨型八角柔光箱（1.5m+）或白伞透射；白色大反光板；米色/奶油背景纸。</span></div><div class="prow"><b>场景</b><span>韩系照相馆：米白无缝背景、道具极简（一把椅/无道具）；环境整洁无杂物。</span></div><div class="prow"><b>灯光</b><span>奶油的地基=柔到极致的光 + 极小光比：巨型柔光箱正面偏上 30°、几乎贴人物（相对光源巨大）；下巴下方白板反弹几乎无阴影；光比 ≤1:1.5 脸上找不到硬影；两侧各一块白旗让光包裹。</span></div><div class="prow"><b>人物与引导</b><span>妆前 2 小时厚敷保湿、开拍前喷保湿水珠做「水光玻璃肌」（T 区留光泽、颊部挂珠）；燕麦/奶白针织、发色棕；表情甜浅笑、头微歪；构图居中证件照感。</span></div><div class="prow"><b>相机参数</b><span>ISO 100｜f/2–2.8｜+1/3EV 提明度｜白平衡偏暖 5500–5800K（奶油色由 WB 起步）。</span></div><div class="prow"><b>后期处理</b><span>高光偏奶油黄、阴影偏奶咖（分离色调）；明度整体拉高；皮肤光泽保留只去临时瑕疵（水光肌不能磨成哑光）；背景米色统一；整体低对比高亮。</span></div></div></details>
+  </article>
+
+  <div class="group-title" id="g4">光绘与创意 · 19–29, 35, 37, 39</div>
+<!-- 19 -->
+<article class="style-card" id="s19">
+  <div class="figure" data-fig="19"><span class="no">19</span><div class="slide-track"><div class="slide"><img src="images/19-flash-snapshot.png" alt="直闪快照" data-title="风格 19 · 参考图"></div><div class="slide"><img src="images/v2/19-flash-snapshot.png" alt="直闪快照（Qwen-Image 2.1）" data-title="风格 19 · 直闪快照（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/19-flash-snapshot-b.png" alt="直闪快照（Qwen-Image 2.1）" data-title="风格 19 · 直闪快照（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/19-flash-snapshot-c.png" alt="直闪快照（Qwen-Image 2.1）" data-title="风格 19 · 直闪快照（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/19-flash-snapshot-d.png" alt="直闪快照（Qwen-Image 2.1）" data-title="风格 19 · 直闪快照（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/19-flash-snapshot-w1.png" alt="直闪快照（年轻女生版）" data-title="风格 19 · 直闪快照（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/19-flash-snapshot-w2.png" alt="直闪快照（年轻女生版）" data-title="风格 19 · 直闪快照（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/19-flash-snapshot-w3.png" alt="直闪快照（年轻女生版）" data-title="风格 19 · 直闪快照（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/19-flash-snapshot-w4.png" alt="直闪快照（年轻女生版）" data-title="风格 19 · 直闪快照（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/19-flash-snapshot-w5.png" alt="直闪快照（年轻女生版）" data-title="风格 19 · 直闪快照（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">DIRECT FLASH SNAPSHOT</span>
+    <h2>直闪快照风格<small>机顶硬闪 · 硬影 · Y2K 派对感</small></h2>
+    <p class="desc">90 年代傻瓜相机式的「粗暴」美学：机顶直打硬闪、人物身后一刀黑影、皮肤油亮过曝。如今它是派对、街拍与 Y2K 时尚大片的标配语言。</p>
+    <div class="tips">
+      <div class="tip"><div class="ic">闪</div><div><b>裸闪直打，故意不做柔化</b><p>热靴灯全自动档直打，保留硬阴影才是味道；背景离人物近一点，黑影更完整有图形感。</p></div></div>
+      <div class="tip"><div class="ic">配</div><div><b>慢速同步让环境亮起来</b><p>1/15–1/30s + 后帘同步闪：人物被闪光冻结、环境光与光轨进画，派对氛围翻倍。</p></div></div>
+      <div class="tip"><div class="ic">测</div><div><b>人脸宁可过曝半档</b><p>闪比测光表或手动试拍；快照感 = 高对比 + 微过曝 + 颗粒，后期加噪点与轻微色差。</p></div></div>
+    </div>
+    <div class="params"><span>28-35mm 广角更「傻瓜」</span><span>后帘同步 1/15s</span><span>ISO 400-800 提环境</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>卡片机/CCD 老数码/胶片傻瓜机 + 机顶直打闪光灯（或相机内建闪）；P 档全自动。</span></div><div class="prow"><b>场景</b><span>家庭派对/便利店深夜/酒吧吧台/KTV——背景墙面离人物 2–3m 以内（硬黑影要投在墙上才成立）。</span></div><div class="prow"><b>灯光</b><span>机顶直打不跳闪：硬光正面冲脸——皮肤油亮高光、人物身后墙上清晰黑硬影，这就是风格本体；环境光刻意调弱让闪光主导；慢速 + 后帘同步让背景霓虹拉出拖影；闪光功率全开近处过曝也保留（快照的粗糙感）。</span></div><div class="prow"><b>人物与引导</b><span>随意日常装、手里举杯/对镜挤眼/和闺蜜贴脸；抓拍大笑中途、不看镜头的侧拍；距离 1–2m 怼近；闪光灯要「亮瞎」的直白感。</span></div><div class="prow"><b>相机参数</b><span>P/AUTO 档｜ISO 400–800｜闪光全自动｜慢速后帘 1/15–1/30 出拖影｜自动白平衡（偏色保留）。</span></div><div class="prow"><b>后期处理</b><span>高对比直出风格：油光保留不修、黑影压实；暗角 +20；颗粒 +15；CCD 式偏色（蓝红偏强）故意不校正；日期水印可加。</span></div></div></details>
+  </article>
+
+<!-- 20 -->
+<article class="style-card" id="s20">
+  <div class="figure" data-fig="20"><span class="no">20</span><div class="slide-track"><div class="slide"><img src="images/20-shadow-play.png" alt="光影切割" data-title="风格 20 · 参考图"></div><div class="slide"><img src="images/v2/20-shadow-play.png" alt="光影切割（Qwen-Image 2.1）" data-title="风格 20 · 光影切割（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/20-shadow-play-b.png" alt="光影切割（Qwen-Image 2.1）" data-title="风格 20 · 光影切割（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/20-shadow-play-c.png" alt="光影切割（Qwen-Image 2.1）" data-title="风格 20 · 光影切割（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/20-shadow-play-d.png" alt="光影切割（Qwen-Image 2.1）" data-title="风格 20 · 光影切割（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/20-shadow-play-w1.png" alt="光影切割（年轻女生版）" data-title="风格 20 · 光影切割（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/20-shadow-play-w2.png" alt="光影切割（年轻女生版）" data-title="风格 20 · 光影切割（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/20-shadow-play-w3.png" alt="光影切割（年轻女生版）" data-title="风格 20 · 光影切割（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/20-shadow-play-w4.png" alt="光影切割（年轻女生版）" data-title="风格 20 · 光影切割（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/20-shadow-play-w5.png" alt="光影切割（年轻女生版）" data-title="风格 20 · 光影切割（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">SHADOW PLAY · GOBO</span>
+    <h2>光影切割风格<small>百叶窗 · 树影 · 图形光斑</small></h2>
+    <p class="desc">让影子的形状爬上脸：百叶窗条纹、树影、镂空板投出的光斑把人脸切成有节奏的图形。一盏硬光 + 一块遮挡物就能拍出高级概念大片。</p>
+    <div class="tips">
+      <div class="tip"><div class="ic">光</div><div><b>必须是硬光</b><p>裸灯/直射日光透过遮挡物，影子边缘才锐利；遮挡物离人物近 → 影锐，离灯近 → 影柔。</p></div></div>
+      <div class="tip"><div class="ic">形</div><div><b>让光条「穿过」眼睛</b><p>百叶条纹横切眼睛最有戏；旋转人物与遮挡物的相对角度，控制条纹走向贴合脸部结构。</p></div></div>
+      <div class="tip"><div class="ic">借</div><div><b>现成道具信手拈来</b><p>午后的百叶窗、窗帘缝光、漏光树叶、漏孔滤光片（gobo）；手机闪光灯 + 镂空卡片也能玩。</p></div></div>
+    </div>
+    <div class="params"><span>硬光 + 深色背景</span><span>点测亮部</span><span>后期再提对比</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>机身 + 50/85mm；裸灯（硬光源）+ 自制 gobo（百叶窗/棕榈叶卡纸/镂空板）；或直接找真百叶窗的窗。</span></div><div class="prow"><b>场景</b><span>棚内米色/白墙前，人物离墙 ≥1m（影子才有层次）；或真实百叶窗的室内下午。</span></div><div class="prow"><b>灯光</b><span>硬光穿过百叶/叶片在墙面与人物脸上投出斜向光带——带宽、带距靠转动百叶角度调整；光带必须斜切过眼睛/颧骨（构图核心）；零填充保留最高反差；灯离 gobo 越远带越锐；让人物贴进投影后微调头位让光带落在理想位置。</span></div><div class="prow"><b>人物与引导</b><span>表情平静内敛（光影已经够戏剧，脸要收着）；着装极简素色；侧身对墙强化身体上光带层次；发型利落下颌线清晰。</span></div><div class="prow"><b>相机参数</b><span>ISO 100｜f/4–5.6（光带边缘必须锐）｜对亮带处点测 0｜手动对焦脸部。</span></div><div class="prow"><b>后期处理</b><span>高反差黑白或彩色皆可：黑场压死、光带局部加亮；带边缘修干净；检查脸与墙上投影深度关系无穿帮。</span></div></div></details>
+  </article>
+
+<!-- 21 -->
+<article class="style-card" id="s21">
+  <div class="figure" data-fig="21"><span class="no">21</span><div class="slide-track"><div class="slide"><img src="images/21-cyberpunk.png" alt="霓虹赛博" data-title="风格 21 · 参考图"></div><div class="slide"><img src="images/v2/21-cyberpunk.png" alt="霓虹赛博（Qwen-Image 2.1）" data-title="风格 21 · 霓虹赛博（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/21-cyberpunk-b.png" alt="霓虹赛博（Qwen-Image 2.1）" data-title="风格 21 · 霓虹赛博（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/21-cyberpunk-c.png" alt="霓虹赛博（Qwen-Image 2.1）" data-title="风格 21 · 霓虹赛博（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/21-cyberpunk-d.png" alt="霓虹赛博（Qwen-Image 2.1）" data-title="风格 21 · 霓虹赛博（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/21-cyberpunk-w1.png" alt="霓虹赛博（年轻女生版）" data-title="风格 21 · 霓虹赛博（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/21-cyberpunk-w2.png" alt="霓虹赛博（年轻女生版）" data-title="风格 21 · 霓虹赛博（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/21-cyberpunk-w3.png" alt="霓虹赛博（年轻女生版）" data-title="风格 21 · 霓虹赛博（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/21-cyberpunk-w4.png" alt="霓虹赛博（年轻女生版）" data-title="风格 21 · 霓虹赛博（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/21-cyberpunk-w5.png" alt="霓虹赛博（年轻女生版）" data-title="风格 21 · 霓虹赛博（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">NEON · CYBERPUNK</span>
+    <h2>霓虹赛博风格<small>粉青撞色 · 湿夜 · 未来感</small></h2>
+    <p class="desc">赛博朋克式夜人像：品红 + 青蓝双色光对撞、雨后湿街反射、霓虹招牌做背景。人是冷的，光是烫的——未来都市的孤独感全在撞色里。</p>
+    <div class="tips">
+      <div class="tip"><div class="ic">光</div><div><b>两色光源分别打两侧</b><p>一侧站霓虹灯牌（品红），另一侧青蓝灯管或 gel 灯补轮廓；让色光直接扫过皮肤与湿发。</p></div></div>
+      <div class="tip"><div class="ic">湿</div><div><b>小雨/洒水是放大器</b><p>湿地面与皮肤水珠把霓虹反射成星河；喷壶喷水雾让光束可见（丁达尔效应）。</p></div></div>
+      <div class="tip"><div class="ic">色</div><div><b>保住高光色纯、暗部偏冷</b><p>后期青橙对撞：阴影加青蓝、皮肤高光保留品红；招牌文字入画但要避商标侵权。</p></div></div>
+    </div>
+    <div class="params"><span>大光圈 f/1.4-2</span><span>3200-4000K 手动 WB</span><span>灯牌作主光 + LED 补</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>机身 + 35/50mm f/1.4–1.8；便携 RGB 光棒/LED 灯管（补对撞色）；透明伞（雨夜反射翻倍）。</span></div><div class="prow"><b>场景</b><span>雨夜霓虹集中街区（粉/青/蓝/紫招牌）、电玩城、唱片行；湿地面反光是第二块霓虹屏；招牌密集度决定成败。</span></div><div class="prow"><b>灯光</b><span>招牌直接打脸：让人物半侧站进招牌光边缘——一侧脸颊被粉/蓝染亮；另一侧用光棒补对撞色（粉↔青成对）；背景霓虹大光圈化成圆斑；对暗部测光 +1 防死黑；湿地面仰角收入倒影加倍霓虹。</span></div><div class="prow"><b>人物与引导</b><span>机能风/反光材质外套/金属饰件/湿发造型；动作：抬头看招牌/回眸/指尖触湿润玻璃；眼神要有「赛博的冷」；避开人群抢镜。</span></div><div class="prow"><b>相机参数</b><span>ISO 1600–3200｜f/1.4–1.8｜快门 1/60 起（再慢手持糊）｜白平衡偏冷 4000K 让霓虹跳色。</span></div><div class="prow"><b>后期处理</b><span>品红-青对撞拉满（分离色调：高光品红/阴影青）；黑位偏蓝不纯黑；肤色向品红微染保留质感；霓虹加光晕；颗粒中量。</span></div></div></details>
+  </article>
+
+<!-- 22 -->
+<article class="style-card" id="s22">
+  <div class="figure" data-fig="22"><span class="no">22</span><div class="slide-track"><div class="slide"><img src="images/22-fog-rain.png" alt="雾雨氛围" data-title="风格 22 · 参考图"></div><div class="slide"><img src="images/v2/22-fog-rain.png" alt="雾雨氛围（Qwen-Image 2.1）" data-title="风格 22 · 雾雨氛围（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/22-fog-rain-b.png" alt="雾雨氛围（Qwen-Image 2.1）" data-title="风格 22 · 雾雨氛围（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/22-fog-rain-c.png" alt="雾雨氛围（Qwen-Image 2.1）" data-title="风格 22 · 雾雨氛围（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/22-fog-rain-d.png" alt="雾雨氛围（Qwen-Image 2.1）" data-title="风格 22 · 雾雨氛围（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/22-fog-rain-w1.png" alt="雾雨氛围（年轻女生版）" data-title="风格 22 · 雾雨氛围（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/22-fog-rain-w2.png" alt="雾雨氛围（年轻女生版）" data-title="风格 22 · 雾雨氛围（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/22-fog-rain-w3.png" alt="雾雨氛围（年轻女生版）" data-title="风格 22 · 雾雨氛围（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/22-fog-rain-w4.png" alt="雾雨氛围（年轻女生版）" data-title="风格 22 · 雾雨氛围（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/22-fog-rain-w5.png" alt="雾雨氛围（年轻女生版）" data-title="风格 22 · 雾雨氛围（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">FOG &amp; RAIN</span>
+    <h2>雾雨氛围风格<small>大雾柔光箱 · 伞 · 孤寂感</small></h2>
+    <p class="desc">坏天气是摄影师的巨型柔光箱：雾把光散射成无边界的柔光，背景被雾吞掉只剩剪影层次。撑一把透明伞站在雾中，故事感与孤寂感天然生成。</p>
+    <div class="tips">
+      <div class="tip"><div class="ic">天</div><div><b>阴天/清晨大雾是黄金时段</b><p>无需任何控光设备——雾本身降噪去杂、柔化一切；山区雨后、海边平流雾概率最高。</p></div></div>
+      <div class="tip"><div class="ic">曝</div><div><b>白雾容易测光偏低，+0.7EV</b><p>大面积白雾会让相机欠曝发灰；对雾测光 +0.7~1EV，保留「白茫茫」的空气感。</p></div></div>
+      <div class="tip"><div class="ic">构</div><div><b>人物偏小 + 大面积留白</b><p>一条路、一片湖、一把伞的剪影；色彩压低饱和，只留服装一点颜色（红伞/红围巾）作视觉锚点。</p></div></div>
+    </div>
+    <div class="params"><span>50-85mm 压缩雾层</span><span>+0.7~1 EV</span><span>冷灰低饱和调色</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>机身 + 70–200（长焦压缩雾层出层次）+ 35（环境）；机身防雨罩；透明伞道具；干冰/烟饼造雾备用。</span></div><div class="prow"><b>场景</b><span>雾天森林公路/山中栈道/清晨湖边（雨后清晨最易起自然雾）；背景要有树影剪影层——纯白雾无层次就废。</span></div><div class="prow"><b>灯光</b><span>阴天雾=天然巨型柔光箱，光均匀无影；人物必须穿深色从白雾中剪出轮廓；长焦抽离 100m 外的树林让雾一层层叠；面部若无环境光就 LED 弱补 1/4；逆雾方向拍光束（丁达尔）加分。</span></div><div class="prow"><b>人物与引导</b><span>深色大衣+透明伞、白衬衫一点亮；表情疏离望向画面外；走路背影/侧身入雾；发丝微湿贴感是氛围的一部分；构图 2/3 留白给雾。</span></div><div class="prow"><b>相机参数</b><span>ISO 400｜f/2.8–4｜+2/3EV 让雾白而不灰｜白平衡偏冷｜对焦锁定在人物（雾天自动对焦易跑树）。</span></div><div class="prow"><b>后期处理</b><span>整体降饱和（绿向青灰）、黑场轻抬出雾感；中低对比；颗粒 +15 胶片叙事；远处树林层次拉开。</span></div></div></details>
+  </article>
+
+<!-- 23 -->
+<article class="style-card" id="s23">
+  <div class="figure" data-fig="23"><span class="no">23</span><div class="slide-track"><div class="slide"><img src="images/23-mirror.png" alt="镜面反射" data-title="风格 23 · 参考图"></div><div class="slide"><img src="images/v2/23-mirror.png" alt="镜面反射（Qwen-Image 2.1）" data-title="风格 23 · 镜面反射（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/23-mirror-b.png" alt="镜面反射（Qwen-Image 2.1）" data-title="风格 23 · 镜面反射（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/23-mirror-c.png" alt="镜面反射（Qwen-Image 2.1）" data-title="风格 23 · 镜面反射（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/23-mirror-d.png" alt="镜面反射（Qwen-Image 2.1）" data-title="风格 23 · 镜面反射（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/23-mirror-w1.png" alt="镜面反射（年轻女生版）" data-title="风格 23 · 镜面反射（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/23-mirror-w2.png" alt="镜面反射（年轻女生版）" data-title="风格 23 · 镜面反射（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/23-mirror-w3.png" alt="镜面反射（年轻女生版）" data-title="风格 23 · 镜面反射（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/23-mirror-w4.png" alt="镜面反射（年轻女生版）" data-title="风格 23 · 镜面反射（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/23-mirror-w5.png" alt="镜面反射（年轻女生版）" data-title="风格 23 · 镜面反射（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">MIRROR · REFLECTION</span>
+    <h2>镜面反射概念风格<small>镜中像 · 双主体 · 内心隐喻</small></h2>
+    <p class="desc">借镜子、窗玻璃、水洼、铬合金拍「镜中人」：真人和倒影同框，半明半暗各占一侧，是表达双重自我、内心对话的经典概念手法。</p>
+    <div class="tips">
+      <div class="tip"><div class="ic">位</div><div><b>相机藏进镜中世界的死角</b><p>侧角取景让镜框切分画面；对焦镜中像（距离=机到像），小心机身/镜头穿帮入镜。</p></div></div>
+      <div class="tip"><div class="ic">光</div><div><b>让真实侧与镜像侧光不同</b><p>一侧窗光一侧阴影，「两个我」性格立现；擦净镜面（先擦再拍）比后期修灰点快十倍。</p></div></div>
+      <div class="tip"><div class="ic">变</div><div><b>没有镜子也能反射</b><p>雨后水洼倒影、橱窗玻璃重影、手机黑屏反照——万物皆镜；倒影倒转构图更有超现实感。</p></div></div>
+    </div>
+    <div class="params"><span>50mm 左右</span><span>f/2.8 分清像与真</span><span>对焦锁定在镜中像</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>机身 + 35/50mm；道具镜：复古圆化妆镜/老式穿衣镜/后视镜/水面+小镜；镜架或助理持镜。</span></div><div class="prow"><b>场景</b><span>卧室梳妆台/老理发店镜/街边古董镜/雨后地面镜面；镜面与人物成 30–60° 夹角——摄影师站在反射角之外（否则自己入镜）。</span></div><div class="prow"><b>灯光</b><span>窗光只打亮镜中脸的半个——另一侧暗；或单灯侧打、镜面反射让「镜里镜外」两个区域亮度不同出分裂感；构图玩镜框画中画：镜框裁脸、只露一只眼；控制高光：镜面反光过曝就减灯功率。</span></div><div class="prow"><b>人物与引导</b><span>半脸对镜头、半脸留给镜子；或镜中只拍补口红/剃须/凝视的眼睛局部；真实动作（化妆/整理头发）比摆拍耐看；眼神：镜内眼睛是主眼神。</span></div><div class="prow"><b>相机参数</b><span>ISO 400–800｜f/2.8｜对镜中脸点测｜对焦镜内像（对焦距离=人物到镜距离+镜到机距离）｜防抖开。</span></div><div class="prow"><b>后期处理</b><span>镜中边缘细节修净（镜框灰尘/手指入镜穿帮）；镜内与实景冷暖可分级不同调；构图校正水平。</span></div></div></details>
+  </article>
+
+<!-- 24 -->
+<article class="style-card" id="s24">
+  <div class="figure" data-fig="24"><span class="no">24</span><div class="slide-track"><div class="slide"><img src="images/24-topdown.png" alt="俯拍天空之镜" data-title="风格 24 · 参考图"></div><div class="slide"><img src="images/v2/24-topdown.png" alt="俯拍天空之镜（Qwen-Image 2.1）" data-title="风格 24 · 俯拍天空之镜（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/24-topdown-b.png" alt="俯拍天空之镜（Qwen-Image 2.1）" data-title="风格 24 · 俯拍天空之镜（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/24-topdown-c.png" alt="俯拍天空之镜（Qwen-Image 2.1）" data-title="风格 24 · 俯拍天空之镜（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/24-topdown-d.png" alt="俯拍天空之镜（Qwen-Image 2.1）" data-title="风格 24 · 俯拍天空之镜（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/24-topdown-w1.png" alt="俯拍天空之镜（年轻女生版）" data-title="风格 24 · 俯拍天空之镜（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/24-topdown-w2.png" alt="俯拍天空之镜（年轻女生版）" data-title="风格 24 · 俯拍天空之镜（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/24-topdown-w3.png" alt="俯拍天空之镜（年轻女生版）" data-title="风格 24 · 俯拍天空之镜（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/24-topdown-w4.png" alt="俯拍天空之镜（年轻女生版）" data-title="风格 24 · 俯拍天空之镜（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/24-topdown-w5.png" alt="俯拍天空之镜（年轻女生版）" data-title="风格 24 · 俯拍天空之镜（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">TOP-DOWN · SKY MIRROR</span>
+    <h2>俯拍 / 天空之镜风格<small>天空即背景 · 人悬浮于天地之间</small></h2>
+    <p class="desc">从正上方俯拍：人躺在浅水盐湖、无边泳池或黑胶板上，水面把整片天空倒扣进画面——天地倒影对称铺满全幅，裙摆像花瓣散开在云影里，人像悬浮于天地之间。真正的主体不是"人+地面"，而是这片天地镜像本身。</p>
+    <div class="tips">
+      <div class="tip"><div class="ic">镜</div><div><b>倒影就是主体：选有戏的天空</b><p>先抬头看天——大朵积云、朝晚霞、星空才有可铺满画面的镜像；无云的白天天镜平淡，拍出来像躺在水泥地。</p></div></div>
+      <div class="tip"><div class="ic">机</div><div><b>正扣机位要绝对水平</b><p>举起相机仰躺盲拍（16-35mm 超广角），或倒置三脚架/独脚架伸向正上方，水平仪居中是生命线。</p></div></div>
+      <div class="tip"><div class="ic">场</div><div><b>找 2-5cm 的浅水镜面</b><p>雨后沙滩退潮面、盐湖浅水区倒影最完整；水深过深倒影碎，风大水面起波即失败。深色裙装配亮天空镜像撞色最强。</p></div></div>
+    </div>
+    <div class="params"><span>16-35mm 超广角</span><span>f/8 全景深</span><span>仰躺盲拍/倒置架</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>机身 + 16–35 超广角（举过头顶仰躺盲拍/倒置独脚架）或无人机正扣俯拍；广角才能把天地都收进画面。</span></div><div class="prow"><b>场景</b><span>先选天再选地：雨后盐湖薄水膜（<5cm 风平）/海滩退潮镜面/无边泳池/草坪黑胶板。天空必须有内容——大积云/晚霞/星空；无云白天=灰镜废片。</span></div><div class="prow"><b>灯光</b><span>天空镜像即背景与主体——人物不需要打光，身体只是云层纹理中的破口；选侧顺光时段让云层亮度高；黑/红大色块长裙与亮镜撞色最强；风一起波纹毁镜面——选无风时刻。</span></div><div class="prow"><b>人物与引导</b><span>大色块长裙呈放射状铺成花瓣形（裙摆分层摊平）、头发甩平、闭眼仰躺；机位绝对 90° 正扣（水平仪居中）；画面不出地平线、不出岸线、不出摄影师影子。</span></div><div class="prow"><b>相机参数</b><span>ISO 100–400｜f/8–11｜手持正扣 1/250 起｜夜空版长曝 + 补光｜对天空中间调测光。</span></div><div class="prow"><b>后期处理</b><span>镜像上下翻转测试哪个构图更「悬浮」；云层四角铺满（透视裁切）；裙子与天空撞色拉满；黑场纯净。</span></div></div></details>
+  </article>
+
+<!-- 25 -->
+<article class="style-card" id="s25">
+  <div class="figure" data-fig="25"><span class="no">25</span><div class="slide-track"><div class="slide"><img src="images/25-zoom-burst.png" alt="变焦拉丝" data-title="风格 25 · 参考图"></div><div class="slide"><img src="images/v2/25-zoom-burst.png" alt="变焦拉丝（Qwen-Image 2.1）" data-title="风格 25 · 变焦拉丝（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/25-zoom-burst-b.png" alt="变焦拉丝（Qwen-Image 2.1）" data-title="风格 25 · 变焦拉丝（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/25-zoom-burst-c.png" alt="变焦拉丝（Qwen-Image 2.1）" data-title="风格 25 · 变焦拉丝（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/25-zoom-burst-d.png" alt="变焦拉丝（Qwen-Image 2.1）" data-title="风格 25 · 变焦拉丝（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/25-zoom-burst-w1.png" alt="变焦拉丝（年轻女生版）" data-title="风格 25 · 变焦拉丝（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/25-zoom-burst-w2.png" alt="变焦拉丝（年轻女生版）" data-title="风格 25 · 变焦拉丝（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/25-zoom-burst-w3.png" alt="变焦拉丝（年轻女生版）" data-title="风格 25 · 变焦拉丝（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/25-zoom-burst-w4.png" alt="变焦拉丝（年轻女生版）" data-title="风格 25 · 变焦拉丝（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/25-zoom-burst-w5.png" alt="变焦拉丝（年轻女生版）" data-title="风格 25 · 变焦拉丝（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">ZOOM BURST</span>
+    <h2>变焦拉丝 / 径向爆炸<small>慢门变焦 · 光线拉丝 · 冲击感</small></h2>
+    <p class="desc">曝光过程中拧变焦环：背景光拉成放射状光束，人物由闪光冻结在正中——「径向爆炸」带来的速度感与冲击感是普通慢门给不了的。</p>
+    <div class="tips">
+      <div class="tip"><div class="ic">慢</div><div><b>0.5–2 秒慢门是甜点位</b><p>先试 1s：变焦动作开始要稳、匀速拧到底；变焦越大幅度拉丝越长，试拍 3-5 次定参数。</p></div></div>
+      <div class="tip"><div class="ic">闪</div><div><b>后帘同步闪光冻结人物</b><p>闪光在曝光末端出光，人脸才清晰；人物保持不动、背景要有散点光源（街灯、灯串）才有丝。</p></div></div>
+      <div class="tip"><div class="ic">构</div><div><b>人物放正中心</b><p>径向拉丝以画面中心为圆心，偏离中心会晕；背景光源越多丝越密，深夜街头灯牌下最佳。</p></div></div>
+    </div>
+    <div class="params"><span>24-70/70-200 变焦</span><span>1s 后帘同步</span><span>f/8 ISO 100</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>机身 + 三脚架 + 变焦镜头（24–120/18–135）；闪光灯 + 柔光罩；快门线。</span></div><div class="prow"><b>场景</b><span>夜晚有纵深灯带的街道/隧道口/桥；人物背后 ≥10m 有灯光群（拉出放射光丝）。</span></div><div class="prow"><b>灯光</b><span>闪光冻结人物（正面柔光罩主灯，功率先试拍确认）；背景灯点靠 1/2–1/8s 慢门长曝——曝光中段匀速拧变焦环（广角→长焦或反向），灯点即炸成放射光丝；先拍一张正常曝光确认闪光与人物锐度，再开拉丝；后帘同步让拉丝「收」向人物。</span></div><div class="prow"><b>人物与引导</b><span>站定别动、眼神睁大、抱臂或插兜——移动即毁片；用预闪信号让模特知道快门开始；选直线站姿（身体线条与光丝方向呼应）。</span></div><div class="prow"><b>相机参数</b><span>ISO 100｜f/8｜快门 1/2–1/8s｜后帘同步闪光｜拧环速度均匀、一次到底｜连拍多试 10 次挑最均匀一张。</span></div><div class="prow"><b>后期处理</b><span>光丝饱和增强（可分色相）；面部提亮锐化（唯一清晰锚点）；以人物脸为圆心二次构图；重影（人物动了）直接淘汰。</span></div></div></details>
+  </article>
+
+<!-- 26 -->
+<article class="style-card" id="s26">
+  <div class="figure" data-fig="26"><span class="no">26</span><div class="slide-track"><div class="slide"><img src="images/26-tiltshift.png" alt="移轴微缩" data-title="风格 26 · 参考图"></div><div class="slide"><img src="images/v2/26-tiltshift.png" alt="移轴微缩（Qwen-Image 2.1）" data-title="风格 26 · 移轴微缩（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/26-tiltshift-b.png" alt="移轴微缩（Qwen-Image 2.1）" data-title="风格 26 · 移轴微缩（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/26-tiltshift-c.png" alt="移轴微缩（Qwen-Image 2.1）" data-title="风格 26 · 移轴微缩（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/26-tiltshift-d.png" alt="移轴微缩（Qwen-Image 2.1）" data-title="风格 26 · 移轴微缩（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/26-tiltshift-w1.png" alt="移轴微缩（年轻女生版）" data-title="风格 26 · 移轴微缩（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/26-tiltshift-w2.png" alt="移轴微缩（年轻女生版）" data-title="风格 26 · 移轴微缩（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/26-tiltshift-w3.png" alt="移轴微缩（年轻女生版）" data-title="风格 26 · 移轴微缩（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/26-tiltshift-w4.png" alt="移轴微缩（年轻女生版）" data-title="风格 26 · 移轴微缩（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/26-tiltshift-w5.png" alt="移轴微缩（年轻女生版）" data-title="风格 26 · 移轴微缩（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">TILT-SHIFT MINIATURE</span>
+    <h2>移轴微缩玩具风格<small>焦点薄带 · 高饱和 · 小人国</small></h2>
+    <p class="desc">一条极窄的合焦带 + 上下剧烈虚化 + 浓烈色彩，真人真街瞬间变成玩具模型。移轴镜头可光学实现，后期渐变蒙版虚化也能仿。</p>
+    <div class="tips">
+      <div class="tip"><div class="ic">角</div><div><b>高角度俯拍像看沙盘</b><p>天桥、二楼往下拍；视角越像俯瞰玩具屋，微缩错觉越强；平视角度很难成立。</p></div></div>
+      <div class="tip"><div class="ic">焦</div><div><b>合焦带只留「工作的小人」</b><p>移轴倾角让焦带横切主体；后期用线性渐变蒙版只留一条清晰带，其余径向+高斯模糊。</p></div></div>
+      <div class="tip"><div class="ic">色</div><div><b>饱和度 +40%、对比加强</b><p>玩具的塑料感来自高饱和纯色；选色彩鲜明的场景（游乐园、集市、玩具色建筑）。</p></div></div>
+    </div>
+    <div class="params"><span>移轴 17/24mm 或后期仿</span><span>俯拍 30-45°</span><span>色彩 +40 饱和</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>移轴镜头（TS-E 17/24/45mm——倾斜移焦点+移校正透视）；或普通长机 + 后期渐变模糊模拟；高角度机位（天桥/楼上）。</span></div><div class="prow"><b>场景</b><span>俯角 >30° 看街市/工地/斑马线，人物在画面中段做「玩具动作」；场景色彩丰富（彩色屋顶/摊篷）玩具感强。</span></div><div class="prow"><b>灯光</b><span>晴天饱和日光——色彩浓（玩具漆感）；光位常规但后期提饱和对比向「塑料模型」调；顺光让建筑色彩全面。</span></div><div class="prow"><b>人物与引导</b><span>人物像发条玩具：走-停-走循环、推自行车往返；单色服装（红/黄）从环境跳出；也可人不动拍车流。</span></div><div class="prow"><b>相机参数</b><span>移轴：倾斜（Tilt）让焦平面只压住人物所在横带、移（Shift）保持建筑垂直线；f/2.8–4 出薄焦带；ISO 100。</span></div><div class="prow"><b>后期处理</b><span>无移轴版：线性渐变模糊上+下（模糊只作用画面上下 1/4）、饱和度 +30、对比 +20、色彩向玩具原色（红黄蓝跳）；透视压平。</span></div></div></details>
+  </article>
+
+<!-- 27 -->
+<article class="style-card" id="s27">
+  <div class="figure" data-fig="27"><span class="no">27</span><div class="slide-track"><div class="slide"><img src="images/27-infrared.png" alt="红外摄影" data-title="风格 27 · 参考图"></div><div class="slide"><img src="images/v2/27-infrared.png" alt="红外摄影（Qwen-Image 2.1）" data-title="风格 27 · 红外摄影（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/27-infrared-b.png" alt="红外摄影（Qwen-Image 2.1）" data-title="风格 27 · 红外摄影（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/27-infrared-c.png" alt="红外摄影（Qwen-Image 2.1）" data-title="风格 27 · 红外摄影（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/27-infrared-d.png" alt="红外摄影（Qwen-Image 2.1）" data-title="风格 27 · 红外摄影（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/27-infrared-w1.png" alt="红外摄影（年轻女生版）" data-title="风格 27 · 红外摄影（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/27-infrared-w2.png" alt="红外摄影（年轻女生版）" data-title="风格 27 · 红外摄影（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/27-infrared-w3.png" alt="红外摄影（年轻女生版）" data-title="风格 27 · 红外摄影（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/27-infrared-w4.png" alt="红外摄影（年轻女生版）" data-title="风格 27 · 红外摄影（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/27-infrared-w5.png" alt="红外摄影（年轻女生版）" data-title="风格 27 · 红外摄影（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">INFRARED</span>
+    <h2>红外梦幻风格<small>白色树叶 · 黑天空 · 超现实</small></h2>
+    <p class="desc">全光谱/改机红外相机下，叶绿素强烈反光让树叶变雪白、天空沉成深黑，皮肤如瓷器——一张「不像地球」的超现实人像，梦幻写真利器。</p>
+    <div class="tips">
+      <div class="tip"><div class="ic">备</div><div><b>改机相机或 590-720nm 红外滤镜</b><p>普通相机 + 红外滤镜需三脚架长曝；改机红外机身手持可行，强光下 1/125s 也能拍。</p></div></div>
+      <div class="tip"><div class="ic">选</div><div><b>选阔叶绿植做背景</b><p>叶绿素越多白化越炸：夏天的树丛、草坪是天然布景；人物穿深色让白雪叶衬出主体。</p></div></div>
+      <div class="tip"><div class="ic">调</div><div><b>假色红通 / 黑白两条路线</b><p>通道互换（红蓝）做 Aerochrome 假色；或转黑白拉高对比做「雪景黑空」；皮肤需单独降噪提亮。</p></div></div>
+    </div>
+    <div class="params"><span>720nm 滤镜或改机身</span><span>强光直射手持</span><span>K式白平衡校准</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>改机身（去低通+红外滤镜 660–720nm）或普通机 + 720nm 螺口滤镜 + 三脚架长曝；广角/标准变焦。</span></div><div class="prow"><b>场景</b><span>阔叶绿植茂密的树林/草地/爬山虎墙——绿叶红外反射变亮白；正午强光直晒时段（红外信号最强）。</span></div><div class="prow"><b>灯光</b><span>必须大太阳直射：阴天红外信号弱到失败；绿叶向光面反射红外成「发光白叶」；人物穿深色（红外下皮肤瓷白、深色衣服成重墨）；正面顺光让叶片全面亮。</span></div><div class="prow"><b>人物与引导</b><span>深色长裙站在白光叶丛中、姿态安静疏离；红唇在红外下成深红点睛；头发深色整齐；眼神安静不看镜头。</span></div><div class="prow"><b>相机参数</b><span>改机身：ISO 100–200、f/8–11、1/125 手持可拍；未改机：长曝 1–4s + 三脚架；手动白平衡反复试拍校准（树叶从红变白的点）。</span></div><div class="prow"><b>后期处理</b><span>白平衡精调让叶片纯白/粉白、天空深黑；红外特有色：皮肤瓷滑无瑕疵（保留这点）；红唇/红色物加饱和；整体对比拉高成超现实。</span></div></div></details>
+  </article>
+
+<!-- 28 -->
+<article class="style-card" id="s28">
+  <div class="figure" data-fig="28"><span class="no">28</span><div class="slide-track"><div class="slide"><img src="images/28-ultrawide.png" alt="超广角人像" data-title="风格 28 · 参考图"></div><div class="slide"><img src="images/v2/28-ultrawide.png" alt="超广角人像（Qwen-Image 2.1）" data-title="风格 28 · 超广角人像（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/28-ultrawide-b.png" alt="超广角人像（Qwen-Image 2.1）" data-title="风格 28 · 超广角人像（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/28-ultrawide-c.png" alt="超广角人像（Qwen-Image 2.1）" data-title="风格 28 · 超广角人像（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/28-ultrawide-d.png" alt="超广角人像（Qwen-Image 2.1）" data-title="风格 28 · 超广角人像（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/28-ultrawide-w1.png" alt="超广角人像（年轻女生版）" data-title="风格 28 · 超广角人像（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/28-ultrawide-w2.png" alt="超广角人像（年轻女生版）" data-title="风格 28 · 超广角人像（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/28-ultrawide-w3.png" alt="超广角人像（年轻女生版）" data-title="风格 28 · 超广角人像（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/28-ultrawide-w4.png" alt="超广角人像（年轻女生版）" data-title="风格 28 · 超广角人像（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/28-ultrawide-w5.png" alt="超广角人像（年轻女生版）" data-title="风格 28 · 超广角人像（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">ULTRA-WIDE ANGLE</span>
+    <h2>超广角透视风格<small>16–24mm · 拉伸张力 · 近大远小</small></h2>
+    <p class="desc">用 16–24mm 超广角怼近拍摄：透视被极度放大，前景部位夸张冲出画面、背景线条飞速收缩，腿部拉长、街道延伸——街拍、街舞、运动人像的「张力密码」。</p>
+    <div class="tips">
+      <div class="tip"><div class="ic">距</div><div><b>越近越夸张，控制才是本事</b><p>镜头贴到 20–30cm 时畸变最猛；想拉长腿就把脚放画面下缘、仰拍；脸放画面中央避免边缘拉伸变形。</p></div></div>
+      <div class="tip"><div class="ic">形</div><div><b>让肢体「够」向镜头</b><p>手、脚、道具伸向镜头成前景巨人，纵深层次瞬间立体；人物四肢摊开贴住画框四角构图更炸。</p></div></div>
+      <div class="tip"><div class="ic">避</div><div><b>别让脸贴边缘、注意横线条</b><p>边缘处五官会拉歪——脸部始终留在画面中心区；广角放大畸变，地平线/门框要刻意校水平。</p></div></div>
+    </div>
+    <div class="params"><span>16-24mm f/2.8-4</span><span>仰拍 15-30° 拉长</span><span>f/8 全景深更夸张</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>机身 + 16–35mm f/2.8–4（16–24mm 端是主角）；无特殊配件；注意畸变校正关闭（保留效果）。</span></div><div class="prow"><b>场景</b><span>有强烈引导线的街区（窄巷/过桥通道/霓虹走廊/地铁通道），低机位贴地。</span></div><div class="prow"><b>灯光</b><span>自然光常规（顺光/侧光都行）——重点不在光在透视：脸部必须在画面中心 1/3（中心畸变最小脸不变形），四肢与道具伸向画面四角被拉伸。</span></div><div class="prow"><b>人物与引导</b><span>脸距镜头 30–50cm 居正中；手举杯/比 V/伸向镜头成「巨人前景」；低角度仰拍腿长翻倍（脚在画面下缘）；身体线条对齐建筑透视线；表情夸张有张力。</span></div><div class="prow"><b>相机参数</b><span>ISO 100｜f/8–11（全景深让畸变张力完整清晰）｜1/250｜竖构图更夸张｜对焦脸部中心。</span></div><div class="prow"><b>后期处理</b><span>不校正人脸畸变（校正会失去风格），但垂直线要校正防楼歪穿帮；前景手局部再放大；街头色彩增强；构图四角留拉伸空间。</span></div></div></details>
+  </article>
+
+<!-- 29 -->
+<article class="style-card" id="s29">
+  <div class="figure" data-fig="29"><span class="no">29</span><div class="slide-track"><div class="slide"><img src="images/29-forced-perspective.png" alt="错位透视" data-title="风格 29 · 参考图"></div><div class="slide"><img src="images/v2/29-forced-perspective.png" alt="错位透视（Qwen-Image 2.1）" data-title="风格 29 · 错位透视（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/29-forced-perspective-b.png" alt="错位透视（Qwen-Image 2.1）" data-title="风格 29 · 错位透视（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/29-forced-perspective-c.png" alt="错位透视（Qwen-Image 2.1）" data-title="风格 29 · 错位透视（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/29-forced-perspective-d.png" alt="错位透视（Qwen-Image 2.1）" data-title="风格 29 · 错位透视（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/29-forced-perspective-w1.png" alt="错位透视（年轻女生版）" data-title="风格 29 · 错位透视（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/29-forced-perspective-w2.png" alt="错位透视（年轻女生版）" data-title="风格 29 · 错位透视（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/29-forced-perspective-w3.png" alt="错位透视（年轻女生版）" data-title="风格 29 · 错位透视（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/29-forced-perspective-w4.png" alt="错位透视（年轻女生版）" data-title="风格 29 · 错位透视（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/29-forced-perspective-w5.png" alt="错位透视（年轻女生版）" data-title="风格 29 · 错位透视（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">FORCED PERSPECTIVE</span>
+    <h2>错位透视玩法<small>大小错觉 · 创意互动 · 远近戏法</small></h2>
+    <p class="desc">「手托远处的人」「捏住摩天轮」——利用近大远小让前景小物与远景大人互换比例。拍的是脑洞：先想好剧本，再让两个主体站到「视觉重合」的位置。</p>
+    <div class="tips">
+      <div class="tip"><div class="ic">位</div><div><b>远近站位决定错觉成立与否</b><p>前景物距镜头 0.5–1m，远处人物 10–30m；两主体必须在同一视线上严丝合缝，摄影师上下移动找到「踩/托/捏」的支点。</p></div></div>
+      <div class="tip"><div class="ic">光</div><div><b>同一光源方向才不穿帮</b><p>远近两人的受光方向、影长必须一致，否则一眼假；顺光或同一时段拍摄最稳。</p></div></div>
+      <div class="tip"><div class="ic">焦</div><div><b>小光圈全景深，两者都要锐</b><p>f/8–11 让前后主体都清晰，错觉才有说服力；对前景对焦，连拍微调站位逐帧试。</p></div></div>
+    </div>
+    <div class="params"><span>35-70mm 标准变焦</span><span>f/8–11 双清晰</span><span>先画图/预演再拍</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>机身 + 24–50mm 广角-标变；三脚架（小光圈慢速备用）；道具：杯子/玩具/食物。</span></div><div class="prow"><b>场景</b><span>开阔平坦：海滩/草原/大草坪——前景手+道具离机 0.5–1m，人物在 10–30m 外同一直线上；背景地平线干净。</span></div><div class="prow"><b>灯光</b><span>关键：前景手与远处人物必须在同一光源同一方向（影子同向），否则秒穿帮；顺光或侧顺光让双方受光一致；正午顶光两侧都亮最安全。</span></div><div class="prow"><b>人物与引导</b><span>前景手端稳杯子（别抖）、远端人物演「坐上杯沿/吊在杯把」——动作夸张定格；两边都看镜头完成互动叙事；人物站位反复微调让「脚踩在杯沿」支点严丝合缝。</span></div><div class="prow"><b>相机参数</b><span>ISO 100–200｜f/8–11 双清晰（清晰差=穿帮）｜对焦超焦距（约前景 2 倍距离处）｜快门 1/250 冻结｜连拍对动作。</span></div><div class="prow"><b>后期处理</b><span>前后景锐度统一（否则露馅）；支点接触处放大检查（脚沿对齐）；天空增强；裁掉露馅穿帮物（路人/影子不同向）。</span></div></div></details>
+  </article>
+
+<!-- 35 -->
+<article class="style-card" id="s35">
+  <div class="figure" data-fig="35"><span class="no">35</span><div class="slide-track"><div class="slide"><img src="images/v2/35-shrine-maiden.png" alt="神明少女（Qwen-Image 2.1）" data-title="风格 35 · 神明少女（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/35-shrine-maiden-b.png" alt="神明少女（Qwen-Image 2.1）" data-title="风格 35 · 神明少女（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/35-shrine-maiden-c.png" alt="神明少女（Qwen-Image 2.1）" data-title="风格 35 · 神明少女（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/35-shrine-maiden-d.png" alt="神明少女（Qwen-Image 2.1）" data-title="风格 35 · 神明少女（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/35-shrine-maiden-e.png" alt="神明少女（Qwen-Image 2.1）" data-title="风格 35 · 神明少女（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/35-shrine-maiden-w1.png" alt="神明少女（年轻女生版）" data-title="风格 35 · 神明少女（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/35-shrine-maiden-w2.png" alt="神明少女（年轻女生版）" data-title="风格 35 · 神明少女（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/35-shrine-maiden-w3.png" alt="神明少女（年轻女生版）" data-title="风格 35 · 神明少女（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/35-shrine-maiden-w4.png" alt="神明少女（年轻女生版）" data-title="风格 35 · 神明少女（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/35-shrine-maiden-w5.png" alt="神明少女（年轻女生版）" data-title="风格 35 · 神明少女（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">SHRINE MAIDEN GLOW</span>
+    <h2>神明少女<small>鸟居神社 · 神光天光 · 圣洁逆光</small></h2>
+    <p class="desc">「被光选中的人」：鸟居、神社、神森林中，强烈的丁达尔天光（God Rays）从树隙洒下给她镀上金色光晕，空气里有漂浮的微粒闪光——圣洁、空灵、仿佛神明降临。</p>
+    <div class="tips"><div class="tip"><div class="ic">光</div><div><b>抓丁达尔时刻</b><p>清晨雾气 + 侧逆光的树林/神社最有神光；喷洒水雾或点蚊香让光束可见，光束与镜头夹角 90-135° 最佳。</p></div></div><div class="tip"><div class="ic">服</div><div><b>白裙/巫女服纯色</b><p>白色连衣裙或巫女袴，白裙反射环境光自带圣光效果；发丝用发胶收细碎毛避免光晕糊边。</p></div></div><div class="tip"><div class="ic">后</div><div><b>提光束 + 加光粒</b><p>Camera Raw 局部提亮光束路径；叠微尘/光点素材，高光加暖金 + 青绿环境色；眼神光必须保留，否则失去灵气。</p></div></div></div>
+    <div class="params"><span>长焦压缩树林光束</span><span>光束方向与镜头垂直</span><span>局部提亮光路</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>机身 + 70–200（长焦压缩树林让光束密集）；广角备用；烟饼/水雾喷壶造光束。</span></div><div class="prow"><b>场景</b><span>清晨 7–9 点的神社/鸟居/杉树林——太阳斜射+夜露起雾才有丁达尔；机位对着光束方向（光束与镜头夹角 90–135°）。</span></div><div class="prow"><b>灯光</b><span>抢丁达尔时刻：侧逆光穿过树隙成实体光柱；烟饼/水雾让光束可见；人物站进光柱边缘——发丝被点成金圈、脸保持反光板轻补；长焦把身后光束压到人物轮廓上。</span></div><div class="prow"><b>人物与引导</b><span>白裙/巫女服（白裙反射环境光自动发光）；闭眼合十/回眸/仰面承光；发胶收碎发（碎发在光束里糊边）；动作极缓，一秒一动。</span></div><div class="prow"><b>相机参数</b><span>ISO 400–800｜f/2.8–4｜对光束点测 0（光束要亮到溢出边缘）｜对脸部锁焦。</span></div><div class="prow"><b>后期处理</b><span>局部提亮光束路径（径向+画笔）；叠微尘/光点素材 5–10%；高光加暖金、环境加青绿；眼神光必须提亮——没有眼神光=没有灵气。</span></div></div></details>
+  </article>
+<!-- 37 -->
+<article class="style-card" id="s37">
+  <div class="figure" data-fig="37"><span class="no">37</span><div class="slide-track"><div class="slide"><img src="images/v2/37-jp-film.png" alt="日系胶片（Qwen-Image 2.1）" data-title="风格 37 · 日系胶片（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/37-jp-film-b.png" alt="日系胶片（Qwen-Image 2.1）" data-title="风格 37 · 日系胶片（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/37-jp-film-c.png" alt="日系胶片（Qwen-Image 2.1）" data-title="风格 37 · 日系胶片（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/37-jp-film-d.png" alt="日系胶片（Qwen-Image 2.1）" data-title="风格 37 · 日系胶片（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/37-jp-film-e.png" alt="日系胶片（Qwen-Image 2.1）" data-title="风格 37 · 日系胶片（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/37-jp-film-w1.png" alt="日系胶片（年轻女生版）" data-title="风格 37 · 日系胶片（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/37-jp-film-w2.png" alt="日系胶片（年轻女生版）" data-title="风格 37 · 日系胶片（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/37-jp-film-w3.png" alt="日系胶片（年轻女生版）" data-title="风格 37 · 日系胶片（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/37-jp-film-w4.png" alt="日系胶片（年轻女生版）" data-title="风格 37 · 日系胶片（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/37-jp-film-w5.png" alt="日系胶片（年轻女生版）" data-title="风格 37 · 日系胶片（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">ANALOG FILM NOSTALGIA</span>
+    <h2>日系胶片<small>铁道口 · 400H 色调 · 柔和颗粒</small></h2>
+    <p class="desc">胶片时代的日本街角记忆：铁道口、斑马线、春日樱吹雪，富士 400H 式的青绿暖粉色调、细腻柔和的银盐颗粒、微微褪色的高光——比「数字清新」多一层岁月的温度。</p>
+    <div class="tips"><div class="tip"><div class="ic">拟</div><div><b>通道混合做胶片色</b><p>高光加青绿、暗部加暖褐（400H 特征）；饱和微降 + 暗部抬高发灰（fade），曲线黑点上移 5-8。</p></div></div><div class="tip"><div class="ic">粒</div><div><b>颗粒要细腻均匀</b><p>叠 35mm 银盐颗粒素材或 PS 滤镜杂色 8-12%，高斯模糊 0.5 让颗粒变「圆」更像银盐而非数码噪点。</p></div></div><div class="tip"><div class="ic">题</div><div><b>铁道口/街角/生活符号</b><p>道口栏杆、邮筒、自动贩卖机入画；抓拍等车的走神瞬间，情绪淡淡的不看镜头更有故事。</p></div></div></div>
+    <div class="params"><span>褪色曲线（黑点上移）</span><span>青绿暖粉通道</span><span>颗粒 10% ±</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>机身 + 35/50mm f/1.8–2.8（或真胶片+400H）；铁道口/邮筒/自动贩卖机场景。</span></div><div class="prow"><b>场景</b><span>郊区铁道口（栏杆/遮断机）/昭和商店街/樱花大道；春季阴天或下午柔顺光；等车瞬间最有故事。</span></div><div class="prow"><b>灯光</b><span>顺光/软侧光为主（胶片高光宽容）；让背景招牌自然稍过曝出「褪色高光」；不用闪光灯——影调要平、要淡。</span></div><div class="prow"><b>人物与引导</b><span>JK 制服/针织/风衣/伞；表情走神等车、不看镜头（背影/侧脸）；动作：看表/踮脚/风吹发；场景符号（栏杆落下瞬间）与人物同框。</span></div><div class="prow"><b>相机参数</b><span>ISO 400（模拟卷速）｜f/2–2.8｜+2/3 让高光淡｜连拍抓拍。</span></div><div class="prow"><b>后期处理</b><span>400H 色调：高光加青绿、阴影加暖褐；曲线黑点上移 5–8（fade 发灰）；饱和 -10；颗粒 8–12% + 0.5 高斯模糊让颗粒「圆」成银盐；樱花粉偏淡。</span></div></div></details>
+  </article>
+<!-- 39 -->
+<article class="style-card" id="s39">
+  <div class="figure" data-fig="39"><span class="no">39</span><div class="slide-track"><div class="slide"><img src="images/v2/39-showa-poster.png" alt="昭和画报（Qwen-Image 2.1）" data-title="风格 39 · 昭和画报（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/39-showa-poster-b.png" alt="昭和画报（Qwen-Image 2.1）" data-title="风格 39 · 昭和画报（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/39-showa-poster-c.png" alt="昭和画报（Qwen-Image 2.1）" data-title="风格 39 · 昭和画报（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/39-showa-poster-d.png" alt="昭和画报（Qwen-Image 2.1）" data-title="风格 39 · 昭和画报（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/39-showa-poster-e.png" alt="昭和画报（Qwen-Image 2.1）" data-title="风格 39 · 昭和画报（Qwen-Image 2.1 本地生成）"></div><div class="slide"><img src="images/v2/39-showa-poster-w1.png" alt="昭和画报（年轻女生版）" data-title="风格 39 · 昭和画报（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/39-showa-poster-w2.png" alt="昭和画报（年轻女生版）" data-title="风格 39 · 昭和画报（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/39-showa-poster-w3.png" alt="昭和画报（年轻女生版）" data-title="风格 39 · 昭和画报（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/39-showa-poster-w4.png" alt="昭和画报（年轻女生版）" data-title="风格 39 · 昭和画报（Qwen-Image 2.1 · 年轻女生）"></div><div class="slide"><img src="images/v2/39-showa-poster-w5.png" alt="昭和画报（年轻女生版）" data-title="风格 39 · 昭和画报（Qwen-Image 2.1 · 年轻女生）"></div></div><button class="slide-arrow prev" aria-label="上一张">‹</button><button class="slide-arrow next" aria-label="下一张">›</button><div class="slide-dots"><button class="on" aria-label="第1张"></button><button class="" aria-label="第2张"></button><button class="" aria-label="第3张"></button><button class="" aria-label="第4张"></button><button class="" aria-label="第5张"></button><button class="" aria-label="第6张"></button><button class="" aria-label="第7张"></button><button class="" aria-label="第8张"></button><button class="" aria-label="第9张"></button><button class="" aria-label="第10张"></button></div></div>
+  <div class="body">
+    <span class="tag">SHOWA ERA POSTER</span>
+    <h2>昭和画报<small>70年代印刷 · 蓬松卷发 · 网点半调</small></h2>
+    <p class="desc">穿越回 1970 年代日本杂志：蓬松羊毛卷、撞色复古图案时装、暖橙印刷色、平涂大色块构图 + 半调网点纹理——昭和画报的复古时尚感，像一张老唱片封面。</p>
+    <div class="tips"><div class="tip"><div class="ic">造</div><div><b>发型服装的年代符号</b><p>羊毛卷/蓬松长发、大翻领、波点/格纹撞色；暖橙芥末绿砖红配色，道具收音机/老式电话。</p></div></div><div class="tip"><div class="ic">印</div><div><b>半调网点 + 印刷褪色</b><p>后期叠半调网点(halftone)素材 10-20%；模拟四色偏移(RGB 分离 1-2px)、高光偏橙、青通道提亮做褪色油墨感。</p></div></div><div class="tip"><div class="ic">构</div><div><b>海报式大色块平涂</b><p>平视正面大特写、纯色背景或平涂色块；留文字排版空间（后期加日文竖排），构图对称大胆。</p></div></div></div>
+    <div class="params"><span>半调网点 15%</span><span>撞色大色块</span><span>轻微套印偏移</span></div>
+  </div>
+
+    <details class="plan"><summary>完整拍摄方案 · 器材 / 场景 / 灯光 / 人物 / 参数 / 后期</summary><div class="plan-body"><div class="prow"><b>器材</b><span>机身 + 35/50mm；大色块背景纸（橙/芥末/砖红）；道具：老式收音机/转盘电话/复古台灯。</span></div><div class="prow"><b>场景</b><span>复古喫茶店（木格栅+彩绘玻璃）或纯色大色块棚拍；场景年代符号越密越好。</span></div><div class="prow"><b>灯光</b><span>平涂柔光：大面积柔光正面均匀打（无立体阴影=印刷画报感）；背景光单独让色块均匀饱和；色片可选：背景打橙、人物保持中性让撞色干净。</span></div><div class="prow"><b>人物与引导</b><span>羊毛卷/蓬松长发、大翻领/波点/格纹撞色针织（芥末绿×砖红×橙）；pose 正面平视大特写、表情呆滞直视（昭和偶像画报的「无表情时尚」）；身体对称居中。</span></div><div class="prow"><b>相机参数</b><span>ISO 200｜f/4–5.6（均匀清晰如印刷）｜白平衡微暖｜曝光中性准确（印刷色靠准确曝光）。</span></div><div class="prow"><b>后期处理</b><span>半调网点素材叠 10–20%（叠加模式）；RGB 三通道分离 1–2px 仿四色套印偏移；高光偏橙、青通道提亮做褪色油墨；留文字区；色彩向 CMYK 复古色域。</span></div></div></details>
+  </article>
+
+<section class="summary">
+  <h2>一张表记住 40 种风格</h2>
+  <p class="sub">风格关键词 × 光线核心 × 一句心法</p>
+  <table>
+    <tr><th>风格</th><th>关键词</th><th>光线核心</th><th>一句心法</th></tr>
+    <tr><td>经典影棚</td><td>伦勃朗光 · 头像</td><td>45° 高位柔光 + 填充</td><td>先转肩再转脸，焦点永远在眼</td></tr>
+    <tr><td>高调</td><td>纯白 · 通透</td><td>背景独立打亮过曝</td><td>背景比脸亮 1–2 档</td></tr>
+    <tr><td>低调</td><td>暗调 · 神秘</td><td>侧逆光一刀切</td><td>控光比加光更重要</td></tr>
+    <tr><td>黑白质感</td><td>纹理 · 高反差</td><td>侧向硬光</td><td>选有故事的脸</td></tr>
+    <tr><td>窗边自然光</td><td>安静 · 居家</td><td>一扇窗即柔光箱</td><td>近窗则柔，远窗则暗</td></tr>
+    <tr><td>逆光金色</td><td>发丝光 · 光斑</td><td>黄金时刻正面逆光</td><td>对脸测光，让太阳过曝</td></tr>
+    <tr><td>日系小清新</td><td>空气感 · 过曝</td><td>顺光/散射光 + 浅色</td><td>过曝 1 档、低饱和多留白</td></tr>
+    <tr><td>人文纪实</td><td>环境 · 真实</td><td>现场光</td><td>先聊天后按快门</td></tr>
+    <tr><td>时尚大片</td><td>gel · 态度</td><td>彩色灯 + 硬光</td><td>拍动作中途，不定点摆拍</td></tr>
+    <tr><td>剪影</td><td>纯黑 · 图形</td><td>对天空测光</td><td>轮廓就是全部，用 90° 侧脸</td></tr>
+    <tr><td>复古胶片</td><td>霓虹 · 颗粒</td><td>霓虹/钨丝灯彩色光源</td><td>慢快门的不完美即氛围</td></tr>
+    <tr><td>双重曝光</td><td>人像×风景</td><td>欠曝剪影 + 风景纹理</td><td>人像越黑，叠加越干净</td></tr>
+    <tr><td>国风古装</td><td>汉服 · 画意</td><td>阴天散射 + 纱幔柔光</td><td>袖扇纱制造动态，低饱和留白</td></tr>
+    <tr><td>环境职业</td><td>场景 · 身份</td><td>现场光 + 人物提亮半档</td><td>道具要有信息量，动作在手上</td></tr>
+    <tr><td>商务形象照</td><td>专业 · 信赖</td><td>蝴蝶光 + 眼神光</td><td>修瑕不修脸，大笑后收最自然</td></tr>
+    <tr><td>婚纱摄影</td><td>仪式 · 双人</td><td>逆光 + 反光板补脸</td><td>引导互动，白纱宁过勿欠</td></tr>
+    <tr><td>美妆特写</td><td>微距 · 细节</td><td>环形灯正面近距离</td><td>f/8+ 对睫毛，妆面定成败</td></tr>
+    <tr><td>儿童玩乐</td><td>童真 · 抓拍</td><td>户外自然光高速定格</td><td>降到孩子的高度，当玩伴不当导演</td></tr>
+    <tr><td>直闪快照</td><td>硬闪 · Y2K</td><td>机顶裸闪直打</td><td>保留硬影，慢速同步更带感</td></tr>
+    <tr><td>光影切割</td><td>百叶 · 图形</td><td>硬光透过遮挡物</td><td>让光条穿过眼睛，遮挡越近影越锐</td></tr>
+    <tr><td>霓虹赛博</td><td>粉青 · 未来</td><td>双色光源对撞两侧</td><td>洒水制造湿反射，色光扫皮肤</td></tr>
+    <tr><td>雾雨氛围</td><td>雾 · 孤寂</td><td>雾天然柔光</td><td>对白雾测光 +0.7EV，人物偏小留白</td></tr>
+    <tr><td>镜面反射</td><td>镜中人 · 概念</td><td>两侧光比不同</td><td>对焦镜中像，擦净镜面再拍</td></tr>
+    <tr><td>俯拍天空之镜</td><td>对称倒影</td><td>顺光浅水镜面</td><td>正扣机位必须水平，裙摆铺成花</td></tr>
+    <tr><td>变焦拉丝</td><td>爆炸光束</td><td>慢门 + 后帘同步闪</td><td>1s 匀速拧变焦，人物放正中心</td></tr>
+    <tr><td>移轴微缩</td><td>玩具国</td><td>焦点薄带 + 俯拍</td><td>高角度 + 高饱和才像玩具</td></tr>
+    <tr><td>红外梦幻</td><td>白叶黑空</td><td>红外波段直射</td><td>阔叶绿植做背景，人物穿深色</td></tr>
+    <tr><td>超广角透视</td><td>16-24mm · 拉伸</td><td>近距离强透视畸变</td><td>脸留中心、肢体贴画框，越近越炸</td></tr>
+    <tr><td>错位透视</td><td>大小错觉</td><td>远近同光源方向</td><td>小光圈双清晰，站位找到视觉支点</td></tr>
+    <tr><td>晴天少女</td><td>烈日 · 蓝天</td><td>逆光 + 反光板强力补脸</td><td>CPL 压蓝天，大笑转圈带道具</td></tr>
+    <tr><td>森系清甜</td><td>森林 · 光斑</td><td>树漏光斑落发肩</td><td>雨后更绿，白裙碎花长焦抽绿</td></tr>
+    <tr><td>蓝调氛围</td><td>宝蓝 · 冷暖</td><td>日落后 20 分钟天光</td><td>暖灯做锚点，天空亮度=灯光</td></tr>
+    <tr><td>田园农场</td><td>麦浪 · 丰收</td><td>下午侧逆光蜂蜜色</td><td>垄沟引导线，农活即动作指导</td></tr>
+    <tr><td>唯美朦胧</td><td>柔焦 · 光晕</td><td>逆光高光可晕开</td><td>奥顿双层叠加，柔光 20-40%</td></tr>
+    <tr><td>神明少女</td><td>神光 · 圣洁</td><td>丁达尔光束 90-135°</td><td>水雾让光显形，白裙自带圣光</td></tr>
+    <tr><td>复古油画</td><td>画意 · 古典</td><td>单灯 1:8 深暗侧光</td><td>丝绒深色系，暖褐+画布纹理</td></tr>
+    <tr><td>日系胶片</td><td>400H · 银盐</td><td>柔和自然光</td><td>黑点上移褪色，颗粒要「圆」</td></tr>
+    <tr><td>韩系奶油</td><td>奶油 · 水光</td><td>大柔光 光比≤1:1.5</td><td>米色系全场统一，高光偏奶油黄</td></tr>
+    <tr><td>昭和画报</td><td>70s · 网点</td><td>平涂大色块背景</td><td>半调网点+套印偏移做印刷感</td></tr>
+    <tr><td>阴天情绪</td><td>灰调 · 低饱和</td><td>整片天空是柔光箱</td><td>对脸 +0.7EV，灰要通透不发脏</td></tr>
+  </table>
+</section>
+
+</main>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <div class="lb-bar">
+    <button class="lb-btn" id="lbZoomOut" title="缩小">−</button>
+    <span class="lb-btn" id="lbScale" style="cursor:default;min-width:56px">100%</span>
+    <button class="lb-btn" id="lbZoomIn" title="放大">＋</button>
+    <button class="lb-btn" id="lbReset" title="重置">1:1</button>
+    <span class="lb-title" id="lbTitle"></span>
+    <button class="lb-btn" id="lbPrev" title="上一张">‹</button>
+    <button class="lb-btn" id="lbNext" title="下一张">›</button>
+    <button class="lb-btn" id="lbClose" title="关闭">✕</button>
+  </div>
+  <div class="lb-stage" id="lbStage"><img id="lbImg" src="" alt=""></div>
+  <div class="lb-hint">滚轮 / ＋－ 缩放 · 拖拽平移 · 双击还原 · ← → 切换 · Esc 关闭</div>
+</div>
+
+<footer>
+  <div class="brand">PORTRAIT · 40 STYLES</div>
+  <p>每种风格配 10 张滑动示意图（本地 ComfyUI · Qwen-Image 2.1 真实摄影风生成，含 5 张年轻女生主题版；01–29 另有原始参考图）· 点击可弹窗放大缩放 · 拍摄参数按现场光线灵活调整 · 建议结合实拍反复练习各风格的光位与测光逻辑</p>
+</footer>
+
+<script>
+  const toc = document.getElementById('toc');
+  const toggle = document.getElementById('tocToggle');
+  toggle.addEventListener('click', e => {
+    e.stopPropagation();
+    toc.classList.toggle('open');
+  });
+  // 点击目录中任意链接后自动收起面板
+  toc.querySelectorAll('.toc-panel a').forEach(a =>
+    a.addEventListener('click', () => toc.classList.remove('open'))
+  );
+  // 点击导航外部区域自动收起
+  document.addEventListener('click', e => {
+    if (!toc.contains(e.target)) toc.classList.remove('open');
+  });
+
+  /* ---------- Image sliders ---------- */
+  document.querySelectorAll('.figure').forEach(fig => {
+    const track = fig.querySelector('.slide-track');
+    const dots = [...fig.querySelectorAll('.slide-dots button')];
+    let idx = 0;
+    const go = i => {
+      idx = (i + dots.length) % dots.length;
+      track.style.transform = `translateX(-${idx * 100}%)`;
+      dots.forEach((d, j) => d.classList.toggle('on', j === idx));
+    };
+    if (dots.length > 1) {
+      fig.querySelector('.prev').addEventListener('click', e => { e.stopPropagation(); go(idx - 1); });
+      fig.querySelector('.next').addEventListener('click', e => { e.stopPropagation(); go(idx + 1); });
+      dots.forEach((d, j) => d.addEventListener('click', e => { e.stopPropagation(); go(j); }));
+    }
+    // touch swipe
+    let sx = null;
+    track.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, {passive:true});
+    track.addEventListener('touchend', e => {
+      if (sx === null) return;
+      const dx = e.changedTouches[0].clientX - sx;
+      if (dots.length > 1 && Math.abs(dx) > 40) go(idx + (dx < 0 ? 1 : -1));
+      sx = null;
+    }, {passive:true});
+  });
+
+  /* ---------- Lightbox ---------- */
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  const lbStage = document.getElementById('lbStage');
+  const lbTitle = document.getElementById('lbTitle');
+  const lbScale = document.getElementById('lbScale');
+  let scale = 1, tx = 0, ty = 0, curList = [], curIdx = 0;
+
+  const applyT = () => {
+    lbImg.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
+    lbScale.textContent = Math.round(scale * 100) + '%';
+  };
+  const resetT = () => { scale = 1; tx = ty = 0; applyT(); };
+  const zoom = d => { scale = Math.min(6, Math.max(0.2, scale + d)); applyT(); };
+
+  const openLb = (img) => {
+    const slides = [...img.closest('.figure').querySelectorAll('.slide img')];
+    curList = slides;
+    curIdx = slides.indexOf(img);
+    showLb();
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+  const showLb = () => {
+    const img = curList[curIdx];
+    lbImg.src = img.src;
+    lbTitle.textContent = img.dataset.title || img.alt;
+    resetT();
+  };
+  const closeLb = () => {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+
+  document.querySelectorAll('.slide img').forEach(img =>
+    img.addEventListener('click', () => openLb(img))
+  );
+  document.getElementById('lbClose').addEventListener('click', closeLb);
+  document.getElementById('lbPrev').addEventListener('click', () => { curIdx = (curIdx + curList.length - 1) % curList.length; showLb(); });
+  document.getElementById('lbNext').addEventListener('click', () => { curIdx = (curIdx + 1) % curList.length; showLb(); });
+  document.getElementById('lbZoomIn').addEventListener('click', () => zoom(0.25));
+  document.getElementById('lbZoomOut').addEventListener('click', () => zoom(-0.25));
+  document.getElementById('lbReset').addEventListener('click', resetT);
+
+  lbStage.addEventListener('wheel', e => {
+    e.preventDefault();
+    zoom(e.deltaY < 0 ? 0.15 : -0.15);
+  }, {passive:false});
+  lbStage.addEventListener('dblclick', resetT);
+
+  // drag to pan
+  let drag = null;
+  lbStage.addEventListener('pointerdown', e => {
+    if (e.target !== lbImg) return;
+    drag = { x: e.clientX - tx, y: e.clientY - ty };
+    lbImg.classList.add('dragging');
+    lbStage.setPointerCapture(e.pointerId);
+  });
+  lbStage.addEventListener('pointermove', e => {
+    if (!drag) return;
+    tx = e.clientX - drag.x; ty = e.clientY - drag.y;
+    applyT();
+  });
+  lbStage.addEventListener('pointerup', () => { drag = null; lbImg.classList.remove('dragging'); });
+
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLb();
+    else if (e.key === 'ArrowLeft') document.getElementById('lbPrev').click();
+    else if (e.key === 'ArrowRight') document.getElementById('lbNext').click();
+    else if (e.key === '+' || e.key === '=') zoom(0.25);
+    else if (e.key === '-') zoom(-0.25);
+  });
+</script>
+
+</body>
+</html>
